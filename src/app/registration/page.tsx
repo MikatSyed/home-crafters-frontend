@@ -169,11 +169,12 @@ const RegisterPage = () => {
                   
                 </div>
                 {imagesPreview.map((image, index) => (
-                    <img
+                    <Image
                       key={index}
                       src={image}
-                      alt="product Preview"
-                      style={{ height: "80px" }}
+                      alt="product Preview"              
+                  width={100}
+                  height={100}
                     />
                   ))}
               </div>

@@ -7,6 +7,7 @@ import FormTextArea from "@/components/Forms/FormTextArea";
 import BreadCrumb from "@/components/UI/BreadCrumb";
 import { useAddServiceMutation } from "@/redux/api/servicesApi";
 import { Button, Col, Row, message } from "antd";
+import Image from "next/image";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -232,11 +233,13 @@ const CreateServicePage = () => {
                 />
               </Col>
               {imagesPreview.map((image, index) => (
-                <img
+                <Image
                   key={index}
                   src={image}
                   alt="product Preview"
-                  style={{ height: "100px" }}
+                
+                  width={100}
+                  height={100}
                 />
               ))}
 

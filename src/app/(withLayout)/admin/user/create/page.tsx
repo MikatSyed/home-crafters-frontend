@@ -7,7 +7,7 @@ import BreadCrumb from "@/components/UI/BreadCrumb";
 import { useRegistrationMutation } from "@/redux/api/authApi";
 import { adminSchema } from "@/schemas/admin";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Col, Row, message } from "antd";
+import { Button, Col, Image, Row, message } from "antd";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -213,11 +213,13 @@ const CreateUserPage = () => {
                 />
               </Col>
               {imagesPreview.map((image, index) => (
-                <img
+                <Image
                   key={index}
                   src={image}
                   alt="product Preview"
-                  style={{ height: "100px" }}
+                 
+                  height={100}
+                  width={100}
                 />
               ))}
 

@@ -12,8 +12,8 @@ const AboutUsPage = () => {
         <Card>
         <h1>About Us</h1>
           <p>
-            Welcome to our company, where we are passionate about delivering high-quality products and services to our
-            valued customers. With years of experience and a dedicated team, we aim to exceed your expectations in every
+            Welcome to our company where we are passionate about delivering high-quality products and services to our
+            valued customers. With years of experience and a dedicated team we aim to exceed your expectations in every
             way.
           </p>
           <p>
@@ -22,14 +22,14 @@ const AboutUsPage = () => {
             clients.
           </p>
           <p>
-            At our company, we focus on continuous improvement, sustainability, and customer satisfaction. We believe
-            in transparency, honesty, and integrity in all our business practices. Your trust is important to us, and we
+            At our company we focus on continuous improvement sustainability and customer satisfaction. We believe
+            in transparency honesty and integrity in all our business practices. Your trust is important to us and we
             work diligently to maintain it.
           </p>
           <p>
-            As a forward-thinking organization, we are constantly exploring new ways to serve you better. Our team is
+            As a forward-thinking organization we are constantly exploring new ways to serve you better. Our team is
             composed of experts in their respective fields who are passionate about what they do. Whether it's product
-            development, customer support, or community engagement, we're committed to delivering excellence.
+            development customer support or community engagement we're committed to delivering excellence.
           </p>
 
         </Card>

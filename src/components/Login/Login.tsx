@@ -1,5 +1,5 @@
 "use client";
-import { Button, Col, Row, message } from "antd";
+import { Button, Col, Row } from "antd";
 import loginImage from "../../assets/Tablet login-bro.png";
 import Image from "next/image";
 import Form from "@/components/Forms/Form";
@@ -39,7 +39,7 @@ const LoginPage = () => {
             style: {
               borderRadius: '10px',
               background: '#FFBF00',
-              color: '#fff',
+              color: '#fff'
             }
           })
       }
@@ -53,7 +53,7 @@ const LoginPage = () => {
           style: {
             borderRadius: '10px',
             background: 'red',
-            color: '#fff',
+            color: '#fff'
           }
         })
     }
@@ -67,13 +67,13 @@ const LoginPage = () => {
       justify="center"
       align="middle"
       style={{
-        minHeight: "100vh",
+        minHeight: "100vh"
       }}
     >
       <Col sm={12} md={8} lg={8}>
         <h1
           style={{
-            margin: "15px 0px",
+            margin: "15px 0px"
           }}
         >
           First login your account
@@ -103,7 +103,7 @@ const LoginPage = () => {
         <div
             style={{
               marginTop: "15px",
-              textAlign: "center",
+              textAlign: "center"
             }}
           >
             <Link href="/registration">
