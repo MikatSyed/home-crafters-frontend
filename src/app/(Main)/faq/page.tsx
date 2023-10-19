@@ -59,6 +59,16 @@ const FaqPage = () => {
         
         ]} />
       <ActionBar title="FAQ List" />
+
+      <h1
+      style={{
+        textAlign: 'center',
+        fontSize: '30px',
+        margin: '30px 0px',
+      }}
+    >
+      FAQ Section
+    </h1>
    
 
       <Collapse
