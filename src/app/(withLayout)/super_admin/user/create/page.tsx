@@ -8,6 +8,7 @@ import { useRegistrationMutation } from "@/redux/api/authApi";
 import { adminSchema } from "@/schemas/admin";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
+import Image from "next/image";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -230,11 +231,12 @@ const CreateUserPage = () => {
                 />
               </Col>
               {imagesPreview.map((image, index) => (
-                <img
+                <Image
                   key={index}
                   src={image}
-                  alt="product Preview"
-                  style={{ height: "100px" }}
+                  alt="product Preview"       
+                  width={100}
+                  height={100}
                 />
               ))}
 

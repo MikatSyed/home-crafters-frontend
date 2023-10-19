@@ -6,6 +6,7 @@ import FormTextArea from "@/components/Forms/FormTextArea";
 import BreadCrumb from "@/components/UI/BreadCrumb";
 import { useAddBlogMutation } from "@/redux/api/blogApi";
 import { Button, Col, message } from "antd";
+import Image from "next/image";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -150,11 +151,12 @@ const CreateUserPage = () => {
                   onChange={createproductImagesChange}
                 />
                    {imagesPreview.map((image, index) => (
-                <img
+                <Image
                   key={index}
                   src={image}
-                  alt="product Preview"
-                  style={{ height: "100px" }}
+                  alt="product Preview"    
+                  width={100}
+                  height={100}
                 />
               ))}
               </Col>

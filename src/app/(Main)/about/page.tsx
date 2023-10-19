@@ -28,8 +28,8 @@ const AboutUsPage = () => {
           </p>
           <p>
             As a forward-thinking organization we are constantly exploring new ways to serve you better. Our team is
-            composed of experts in their respective fields who are passionate about what they do. Whether it's product
-            development customer support or community engagement we're committed to delivering excellence.
+            composed of experts in their respective fields who are passionate about what they do. Whether it is product
+            development customer support or community engagement we are committed to delivering excellence.
           </p>
 
         </Card>
