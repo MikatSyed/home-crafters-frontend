@@ -1,4 +1,4 @@
 export const getBaseUrl = ():string => {
     
-    return process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:6060/api/v1"
+    return process.env.NEXT_PUBLIC_API_BASE_URL || "https://home-crafters.vercel.app/api/v1"
 }
