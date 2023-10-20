@@ -59,20 +59,13 @@ const AppNavbar: React.FC = () => {
     },
     {
       key: "4",
-      icon: <FormOutlined />,
-      label: "FAQs",
-      type: "link",
-      path: "/faq",
-    },
-    {
-      key: "5",
       icon: <FundOutlined />,
       label: "Feedback",
       type: "link",
       path: "/feedback",
     },
     {
-      key: "6",
+      key: "5",
       icon: <ContactsOutlined />,
       label: "About Us",
       type: "link",

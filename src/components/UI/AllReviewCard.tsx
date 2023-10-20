@@ -1,3 +1,4 @@
+"use client"
 import { Row } from 'antd';
 import React from 'react';
 import ReviewCard from './ReviewCard';

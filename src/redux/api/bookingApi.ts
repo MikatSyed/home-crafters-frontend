@@ -3,6 +3,7 @@ import { baseApi } from "./baseApi";
 import { tagTypes } from "../tag-types";
 
 const  URL = "/booking";
+const  STATISTIC_URL = "/booking/statistics";
 
 export const bookingApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -55,6 +56,15 @@ export const bookingApi = baseApi.injectEndpoints({
       invalidatesTags:[tagTypes.slot , tagTypes.booking]
     }),
 
+    getStatistics: build.query({
+      query: () => ({
+        url : `${STATISTIC_URL}`,
+        method: "GET"
+       
+      }),
+      providesTags:[tagTypes.user , tagTypes.booking,tagTypes.services]
+    }),
+
     checkAvailableSlot: build.query({
         query: (bookingDate) => ({
           url : `${URL}/check-available-slot?bookingDate=${bookingDate}`,
@@ -67,4 +77,4 @@ export const bookingApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useBookingsQuery,useBookingQuery,useAddBookingMutation,useUpdateBookingMutation,useDeleteBookingMutation,useCheckAvailableSlotQuery } = bookingApi;
+export const { useBookingsQuery,useBookingQuery,useAddBookingMutation,useUpdateBookingMutation,useDeleteBookingMutation,useCheckAvailableSlotQuery,useGetStatisticsQuery } = bookingApi;

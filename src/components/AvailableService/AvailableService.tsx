@@ -1,15 +1,11 @@
 "use client";
-import { Pagination, theme } from "antd";
-import AppNavbar from "@/components/UI/AppNavbar";
+import {  theme } from "antd";
+
 import { useServicesQuery } from "@/redux/api/servicesApi";
 import { Col, Row, Card, Input, Rate } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import BreadCrumb from "@/components/UI/BreadCrumb";
-import ActionBar from "@/components/UI/ActionBar";
-import { useDebounced } from "@/redux/hook";
-import { useState } from "react";
-import AppFooter from "@/components/UI/AppFooter";
+
 
 const AvailableService = () => {
  
@@ -22,7 +18,7 @@ const AvailableService = () => {
   let serviceData: any = data?.data.filter(
     (data: any) => data.availbility === "available"
   );
-  console.log(serviceData);
+  
 
   return (
     <>
@@ -86,7 +82,7 @@ const AvailableService = () => {
                         {service?.category?.title}
                       </span>,
                       <span className="text" key="2">
-                        {service?.availability}
+                        {service?.availbility}
                       </span>,
                       <span className="text" key="3">
                         ${service?.price}
@@ -105,6 +101,8 @@ const AvailableService = () => {
                             />
                           </span>
                           <span>({service?.totalReviews} reviews)</span>
+                        <p>{service?.location}</p>
+
                         </div>
                       }
                     />

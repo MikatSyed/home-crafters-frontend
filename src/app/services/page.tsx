@@ -202,8 +202,9 @@ const ServicesPage = () => {
                       {service?.category?.title}
                     </span>,
                     <span className="text" key="2">
-                      {service?.availability}
+                      {service?.availbility}
                     </span>,
+                   
                     <span className="text" key="3">
                       ${service?.price}
                     </span>,
@@ -217,6 +218,7 @@ const ServicesPage = () => {
                           <Rate allowHalf disabled defaultValue={service?.averageRating} />
                         </span>
                         <span>({service?.totalReviews} reviews)</span>
+                        <p>{service?.location}</p>
                       </div>
                     }
                   />

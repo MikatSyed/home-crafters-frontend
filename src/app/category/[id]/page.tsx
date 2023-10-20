@@ -1,5 +1,5 @@
 "use client"
-import {  Pagination, theme } from 'antd';
+import {   theme } from 'antd';
 import AppNavbar from '@/components/UI/AppNavbar';
 import {  useServicesQuery } from "@/redux/api/servicesApi";
 import { Col, Row, Card, Input, Rate } from "antd";
@@ -124,6 +124,8 @@ const ServicesPage = ({params}:IDParams) => {
                           <Rate allowHalf disabled defaultValue={service?.averageRating} />
                         </span>
                         <span>({service?.totalReviews} reviews)</span>
+                        <p>{service?.location}</p>
+
                       </div>
                     }
                   />

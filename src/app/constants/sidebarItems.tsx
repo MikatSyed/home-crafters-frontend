@@ -14,6 +14,11 @@ import { USER_ROLE } from "./role";
 export const sidebarItems = (role:string)=>{
 
     const defaultSidebarItems: MenuProps["items"] = [
+      {
+        label: <Link href={`/`}>Home</Link>,
+        icon: <TableOutlined />,
+        key: `/${role}/home`,
+      },
         {
             label: "Profile",
             key: "profile",
@@ -25,21 +30,12 @@ export const sidebarItems = (role:string)=>{
                   },
                  
             ]
-        }
+        },
+    
+      
     ]
 
-    const commonAdminSidebarItems: MenuProps["items"] = [
-        {
-          label: <Link href={`/${role}/manage-student`}>Manage Students</Link>,
-          icon: <TableOutlined />,
-          key: `/${role}/manage-student`,
-        },
-        {
-          label: <Link href={`/${role}/manage-faculty`}>Manage Faculty</Link>,
-          icon: <TableOutlined />,
-          key: `/${role}/manage-faculty`,
-        },
-      ];
+  
     
       const adminSidebarItems: MenuProps["items"] = [
         

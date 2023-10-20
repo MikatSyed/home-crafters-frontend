@@ -14,17 +14,25 @@ import AppFooter from '@/components/UI/AppFooter';
 const { Meta } = Card;
 import  { Toaster } from 'react-hot-toast';
 import ReviewPage from '@/components/UI/ReviewPage';
+import { isLoggedIn } from '../../../../services/auth.service';
+import { useRouter } from 'next/navigation';
 
 type IDProps = {
   params: any;
 };
 
 const ServiceDetailsPage = ({ params }: IDProps) => {
+  const router = useRouter()
+  const isLogin = isLoggedIn()  
+  if (!isLogin) {
+    router.push('/login')
+  }
   const { id } = params;
   const currentDate = new Date();
   let formattedDate  = currentDate.toISOString().split('T')[0];
-  console.log(formattedDate);
   const [selectedSlotId, setSelectedSlotId] = useState(null);
+
+
   const [selectedDate, setSelectedDate] = useState<Dayjs | string>();
   if(selectedDate === undefined) {
     setSelectedDate(formattedDate)
@@ -51,6 +59,8 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
       console.log(res);
       message.success(res?.message);
       setSelectedSlotId(null)
+      localStorage.setItem("booking",JSON.stringify({price:serviceData.price,bookingId:res.data.id}));
+      router.push('/confirmBooking')
 
     } catch (err: any) {
       console.log(err);

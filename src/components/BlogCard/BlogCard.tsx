@@ -1,30 +1,35 @@
 "use client"
 import { Card, Typography, Row, Col, Tag } from 'antd';
 import { CalendarOutlined } from '@ant-design/icons';
+import BreadCrumb from '@/components/UI/BreadCrumb';
+import ActionBar from '@/components/UI/ActionBar';
 import Link from "next/link";
 import Image from 'next/image';
 import { useBlogsQuery } from '@/redux/api/blogApi';
 import dayjs from "dayjs";
+import { Toaster } from 'react-hot-toast';
 
-
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 const BlogCard = () => {
   const { data } = useBlogsQuery(undefined);
 
   return (
     <>
-     
-     
-     <h1
-        style={{
-          textAlign: 'center',
-          fontSize: '30px',
-          margin: '30px 0px',
-        }}
-      >
-       Recenly Added Blog News
-      </h1>
+      <BreadCrumb
+        items={[
+          {
+            label: "Home",
+            link: "/",
+          },
+          {
+            label: "Blog",
+            link: "/blog",
+          },
+        ]}
+      />
+      <ActionBar title="Blog List" />
+      <Toaster position="top-right" reverseOrder={false} />
 
       <Row gutter={16}>
         {data?.data?.map((blog: any) => (
