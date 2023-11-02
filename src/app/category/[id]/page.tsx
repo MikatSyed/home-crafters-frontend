@@ -10,7 +10,11 @@ import ActionBar from '@/components/UI/ActionBar';
 import { useDebounced } from '@/redux/hook';
 import { useState } from 'react';
 import AppFooter from '@/components/UI/AppFooter';
-
+import Nav from '@/components/Nav/Nav';
+import Footer from '@/components/Footer/Footer';
+import Heading from '@/components/Hero/Heading';
+import ServiceCard from '@/components/Services/ServiceCard';
+import Loading from '@/app/loading';
 type IDParams = {
     params : any
 }
@@ -50,103 +54,32 @@ const ServicesPage = ({params}:IDParams) => {
   console.log(serviceData);
 
   if(!serviceData){
-    return <p>No Data</p>
+    return <Loading/>
   }
-
 
   return (
     <>
-      <AppNavbar />
+      <Nav />
 
-      <BreadCrumb items={[
-              { label: 'Home', link: '/' },
-              { label: 'Services', link: '/services' }
-
-            ]} />
-            <ActionBar title="Service Category" />
-            <div
+            <section className='recent' style={{padding:'20px 0'}}>
+        <div className='container'>
+          <Heading title=' Category Services Listed' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.' />
+          
+          <div
               style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 marginBottom: "10px",
+                marginTop:'30px'
               }}
             >
               <Input.Search placeholder="Search" style={{ width: 300 }} onChange={(e) => setSearchTerm(e.target.value)} />
             </div>
-            <div style={{ padding: 24, textAlign: 'center', background: colorBgContainer }}>
-
-              <Row gutter={{ xs: 5, sm: 5, md: 5, lg: 5, xl: 5 }} justify="center">
-             
-                 {serviceData ? (
-          serviceData.map((service: any) => (
-            <Col
-              xs={24}
-              sm={12}
-              md={8}
-              lg={8}
-              xl={6}
-              style={{ marginBottom: '5px' }}
-              key={service.id}
-            >
-              <Link href={`/services/${service.id}`}>
-                <Card
-                  style={{ width: '100%', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}
-                  cover={
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: '180px'
-                      }}
-                    >
-                      <Image  alt={service?.name} src={service?.serviceImg.length > 1 ? service?.serviceImg.length - 1 : service?.serviceImg[0]} height={180} width={180} />
-                    </div>
-                  }
-                  actions={[
-                    <span className="text" key="1">
-                      {service?.category?.title}
-                    </span>,
-                    <span className="text" key="2">
-                      {service?.availability}
-                    </span>,
-                    <span className="text" key="3">
-                      ${service?.price}
-                    </span>,
-                  ]}
-                >
-                  <Card.Meta
-                    title={service?.name}
-                    description={
-                      <div>
-                        <span style={{ marginRight: '10px' }}>
-                          <Rate allowHalf disabled defaultValue={service?.averageRating} />
-                        </span>
-                        <span>({service?.totalReviews} reviews)</span>
-                        <p>{service?.location}</p>
-
-                      </div>
-                    }
-                  />
-                </Card>
-              </Link>
-            </Col>
-          ))
-          ) : (
-            <div>Loading...</div>
-            ) 
-          }
-
-<div>
-      
-     
-    </div>
-
-              </Row>
-            
-            </div>
-      <AppFooter/>
+          <ServiceCard  data={serviceData} />
+        </div>
+      </section>
+      <Footer/>
     </>
   );
 };

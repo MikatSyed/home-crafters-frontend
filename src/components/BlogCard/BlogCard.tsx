@@ -1,6 +1,6 @@
 "use client"
 import { Card, Typography, Row, Col, Tag } from 'antd';
-import { CalendarOutlined } from '@ant-design/icons';
+import { CalendarFilled } from '@ant-design/icons';
 import BreadCrumb from '@/components/UI/BreadCrumb';
 import ActionBar from '@/components/UI/ActionBar';
 import Link from "next/link";
@@ -9,7 +9,7 @@ import { useBlogsQuery } from '@/redux/api/blogApi';
 import dayjs from "dayjs";
 import { Toaster } from 'react-hot-toast';
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 
 const BlogCard = () => {
   const { data } = useBlogsQuery(undefined);
@@ -39,7 +39,7 @@ const BlogCard = () => {
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
                 <Image src={blog?.blogImg[0]} alt="Blog Cover" width={200} height={200} />
               </div>
-              <Tag icon={<CalendarOutlined />} color="default">
+              <Tag icon={<CalendarFilled />} color="default">
                 {dayjs(blog?.createdAt).format("MMM D, YYYY hh:mm A")}
               </Tag>
               <Title level={4}>{blog?.title}</Title>

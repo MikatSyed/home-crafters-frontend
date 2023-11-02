@@ -1,24 +1,36 @@
-import { Avatar, Card, Rate, Row } from 'antd';
+// import { EnvironmentFilled } from '@ant-design/icons';
+import { Col, Rate, Row } from 'antd';
+import Image from 'next/image';
+
 const ReviewCard = ({ review }:any) => {
   console.log(review);
-    const { user, rating, comment } = review;
-  
+
     return (
-      <Card style={{ width: 300, margin: 16 }}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
-          <Avatar src={user?.profileImg[0]} /> {/* Assuming profileImg is an array and you want to display the first image */}
-          <div style={{ marginLeft: 16 }}>
-            <h2 style={{ marginBottom: 0 }}>{user?.name}</h2>
-            <p style={{ marginBottom: 0 }}>{user?.email}</p>
-          </div>
-        </div>
-        <div style={{ marginBottom: 16 }}>
-          Rating: <Rate disabled allowHalf defaultValue={rating} />
-        </div>
-        <div>
-          <h4>Comment: {comment}</h4>
-        </div>
-      </Card>
+      <div className="content mtop">
+              <Row gutter={[16, 16]}> 
+            
+                {review?.map((val:any) => (
+            <Col xs={24} sm={24} md={12} lg={8} xl={8} key={val?.id} >
+                  <div className="box" key={val?.id}>
+                    <div className="details">
+                      <div className="img">
+                        <Image src={val?.user?.profileImg[0]} alt="" height={144} width={349}/>
+                      </div>
+                      <label>{val?.user?.address}</label>
+                      <h4>{val?.user?.name}</h4>
+                    
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <Rate disabled allowHalf defaultValue={val?.rating} style={{ fontSize: 16 }} />
+                      </div>
+       
+                      <label>{val.comment}</label>
+                    </div>
+                  </div>  
+                </Col>
+                ))}
+           
+            </Row>
+              </div>
     );
   };
 

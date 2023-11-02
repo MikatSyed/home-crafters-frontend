@@ -1,11 +1,30 @@
+import Awards from '@/components/Awards/Awards';
+import Client from '@/components/Client/Client';
+import FaqSection from '@/components/FaqSection/FaqSection';
+import FeaturedCategory from '@/components/FeaturedCategory/FeaturedCategory';
+import Hero from '@/components/Hero/Hero';
+import Review from '@/components/Review/Review';
+import Services from '@/components/Services/Services';
+import UpcomingService from '@/components/UpcomingService/UpcomingService';
 import React from 'react';
+import BlogCard from '../(Main)/blog/page';
 
-const page = () => {
+const Home = () => {
     return (
-        <div>
-            home
-        </div>
+        <>
+        <Hero/>
+        <FeaturedCategory/>
+        <Services/>
+        <Awards/>
+        <UpcomingService/>
+        <FaqSection/>
+        <Review/>
+        <BlogCard/>
+        <Client/>
+
+    
+        </>
     );
 };
 
-export default page;
+export default Home;

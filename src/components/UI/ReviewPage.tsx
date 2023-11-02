@@ -8,6 +8,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ReviewCard from "./ReviewCard";
 import { useServiceQuery } from "@/redux/api/servicesApi";
+import Heading from "../Hero/Heading";
 
 
 const ReviewPage = (id:any) => {
@@ -18,6 +19,7 @@ const ReviewPage = (id:any) => {
 
     const {data:reviewData} = useReviewByServiceIdQuery(data.serviceId)
     const reviews  = reviewData?.data;
+    console.log(reviews);
   
 
 
@@ -92,14 +94,18 @@ const ReviewPage = (id:any) => {
       <>Review Section Only for Available Service </>
      }
 
-      <div>    
-
-      <Row justify="center" align="middle">
-        {reviews?.map((review:any, index:any) => (
-          <ReviewCard key={index} review={review} />
-        ))}
-      </Row>
-
+      <div>  
+          
+      <section className="team background">
+      <div className="container">
+        <Heading
+          title="Our Client Reviews"
+          subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+        />
+            
+          <ReviewCard review={reviews} />
+      </div>
+    </section>
       </div>
     </>
   );

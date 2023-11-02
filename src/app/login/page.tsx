@@ -1,3 +1,4 @@
+
 import LoginPage from '@/components/Login/Login';
 import { Metadata } from 'next';
 import React from 'react';
@@ -12,6 +13,7 @@ const Login = () => {
     return (
         <div>
             <LoginPage/>
+           
         </div>
     );
 };
