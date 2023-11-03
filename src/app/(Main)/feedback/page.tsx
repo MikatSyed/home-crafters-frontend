@@ -84,9 +84,9 @@ const CreateUserPage = () => {
 
            
             
-          <Button htmlType="submit" type="primary">
+          <button type="submit" className="btn2">
             Post
-          </Button>
+          </button>
         </Form>
       </div>
     </>

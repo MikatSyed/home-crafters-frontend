@@ -5,8 +5,9 @@ import { EnvironmentOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import Image from "next/image";
 
+
 const ServiceCard = ({data}:any) => {
-  console.log(data);
+
  
   return (
     <>

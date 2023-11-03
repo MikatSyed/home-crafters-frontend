@@ -15,10 +15,12 @@ import { Dayjs } from "dayjs";
 const { Meta } = Card;
 import { Toaster } from "react-hot-toast";
 import ReviewPage from "@/components/UI/ReviewPage";
-import { isLoggedIn } from "../../../../services/auth.service";
-import Nav from "@/components/Nav/Nav";
-import Footer from "@/components/Footer/Footer";
 import {useRouter} from "next/navigation";
+import { isLoggedIn } from "../../../../../services/auth.service";
+import Loading from "@/app/loading";
+import { useReviewByServiceIdQuery } from "@/redux/api/reviewApi";
+import Heading from "@/components/Hero/Heading";
+import ReviewCard from "@/components/UI/ReviewCard";
 
 type IDProps = {
   params: any;
@@ -34,6 +36,8 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
   const currentDate = new Date();
   let formattedDate = currentDate.toISOString().split("T")[0];
   const [selectedSlotId, setSelectedSlotId] = useState(null);
+  const {data:reviewData} = useReviewByServiceIdQuery(id);
+  const reviews  = reviewData?.data;
 
   const [selectedDate, setSelectedDate] = useState<Dayjs | string>();
   if (selectedDate === undefined) {
@@ -91,11 +95,11 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
-      <Nav />
+   
 
       <div style={{ marginTop: "5rem", marginBottom: "5rem" }}>
         {serviceDataLoading ? (
-          <div>Loading service data...</div>
+         <Loading/>
         ) : (
           <Row gutter={[16, 16]}>
             <Col xs={24} lg={12}>
@@ -176,16 +180,26 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
                   </Form>
                 </>
               ) : (
-                <> Booking Only For Available Service</>
+                <> </>
               )}
+            <ReviewPage userId={loginData?.data?.id} serviceId={id} />
             </Col>
           </Row>
         )}
-        <div>
-          <ReviewPage userId={loginData?.data?.id} serviceId={id} />
-        </div>
+       
+      
+        <section className="team background">
+      <div className="container">
+        <Heading
+          title="Our Client Reviews"
+          subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+        />
+            
+          <ReviewCard review={reviews} />
       </div>
-      <Footer />
+    </section>
+      </div>
+ 
     </>
   );
 };

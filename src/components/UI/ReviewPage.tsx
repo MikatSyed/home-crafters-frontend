@@ -17,12 +17,6 @@ const ReviewPage = (id:any) => {
     const [ratingValue, setRatingValue] = useState<number | undefined>(0);
     const [addReview] = useAddReviewMutation();
 
-    const {data:reviewData} = useReviewByServiceIdQuery(data.serviceId)
-    const reviews  = reviewData?.data;
-    console.log(reviews);
-  
-
-
   const onSubmit = async (values: any) => {
     let obj = {...values}
     obj.rating = ratingValue
@@ -84,28 +78,17 @@ const ReviewPage = (id:any) => {
                 <FormTextArea name="comment" label="Comment" rows={8} />
               </Col>
     
-          <Button htmlType="submit" type="primary">
+          <button type="submit" className="btn2">
             Review
-          </Button>
+          </button>
         </Form>
       </Card>
       </> 
       : 
-      <>Review Section Only for Available Service </>
+      <> </>
      }
 
       <div>  
-          
-      <section className="team background">
-      <div className="container">
-        <Heading
-          title="Our Client Reviews"
-          subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
-        />
-            
-          <ReviewCard review={reviews} />
-      </div>
-    </section>
       </div>
     </>
   );

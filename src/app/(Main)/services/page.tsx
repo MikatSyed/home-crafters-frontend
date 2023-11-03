@@ -1,27 +1,15 @@
 "use client";
 import { Layout, Pagination, theme } from "antd";
-import AppNavbar from "@/components/UI/AppNavbar";
 import { useServicesQuery } from "@/redux/api/servicesApi";
 import { Col, Row, Card, Input, Rate } from "antd";
-import Image from "next/image";
-import Link from "next/link";
-// import serviceImage from "../../assets/images.jpg";
-import BreadCrumb from "@/components/UI/BreadCrumb";
-import ActionBar from "@/components/UI/ActionBar";
 import { Radio } from "antd";
 import { useDebounced } from "@/redux/hook";
 import { useState } from "react";
-import AppFooter from "@/components/UI/AppFooter";
 import { useCategoriesQuery } from "@/redux/api/categoryApi";
-import AllReviewCard from "@/components/UI/AllReviewCard";
-import Footer from "@/components/Footer/Footer";
-import Nav from "@/components/Nav/Nav";
-import Loading from "../loading";
-import Heading from "@/components/Hero/Heading";
 import ServiceCard from "@/components/Services/ServiceCard";
 const RadioGroup = Radio.Group;
 
-const { Header, Content, Sider } = Layout;
+
 
 const ServicesPage = () => {
   const query: Record<string, any> = {};
@@ -39,9 +27,7 @@ const ServicesPage = () => {
   query["limit"] = size;
   query["page"] = page;
   query["searchTerm"] = searchTerm;
-  // query["minPrice"] = sliderValue[0];
-  // query["maxPrice"] = sliderValue[1];
-  // query["category"] = selectedCategories;
+
 
   const debouncedTerm = useDebounced({
     searchQuery: searchTerm,
@@ -88,7 +74,7 @@ const ServicesPage = () => {
 
   return (
     <>
-      <Nav />
+     
       <Row>
 
         <Col lg={4} xl={4}>
@@ -98,7 +84,7 @@ const ServicesPage = () => {
             <h2
               style={{
                 marginBottom: "10px",
-                color: "orange",
+                fontWeight:400
                 // marginLeft: "20px",
               }}
             >
@@ -132,8 +118,8 @@ const ServicesPage = () => {
             <h2
               style={{
                 marginBottom: "10px",
-                color: "orange",
                 marginLeft: "20px",
+                fontWeight:400
               }}
             >
               Price Range
@@ -187,7 +173,7 @@ const ServicesPage = () => {
                 total={data?.meta?.total || 0}
               />
             </div>
-      <Footer />
+     
     </>
   );
 };

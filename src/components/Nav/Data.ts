@@ -18,8 +18,8 @@ export const nav: { text: string; path: string }[] = [
       path: "/blog",
     },
     {
-      text: "pricing",
-      path: "/pricing",
+      text: "feedback",
+      path: "/feedback",
     },
     {
       text: "contact",
