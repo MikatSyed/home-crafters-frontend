@@ -1,6 +1,5 @@
 import React from "react";
 import { homeAbout } from "./data";
-import Awrapper from "./Awrapper";
 import Heading from "../Hero/Heading";
 import styles from "../../../src/styles/about.module.css";
 import AboutImage from "../../assets/Building permit-pana.png";

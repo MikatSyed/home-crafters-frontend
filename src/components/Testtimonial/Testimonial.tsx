@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import Image from 'next/image';
 
 const Testimonial = () => {
   const {data} = useReviewsQuery(undefined)
@@ -51,7 +52,7 @@ const Testimonial = () => {
               <div className='items shadow'>
                 <div className='box flex'>
                   <div className='img'>
-                    <img src={val?.user?.profileImg[0]} alt='' />
+                    <Image src={val?.user?.profileImg[0]} alt='' height={100} width={100} style={{borderRadius :'50%'}} />
                 
                   </div>
                   <div className='name'>

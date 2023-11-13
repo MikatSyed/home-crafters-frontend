@@ -9,7 +9,7 @@ import UpcomingService from '@/components/UpcomingService/UpcomingService';
 import React from 'react';
 import BlogCard from '../(Main)/blog/page';
 import About from '@/components/About/About';
-import Awrapper from '@/components/About/Awrapper';
+
 import Testimonial from '@/components/Testtimonial/Testimonial';
 
 const Home = () => {
@@ -23,7 +23,7 @@ const Home = () => {
         <UpcomingService/>
         <FaqSection/>
         <Testimonial />
-        {/* <Awrapper /> */}
+     
         <BlogCard/>
         <Client/>
         {/* <Review/> */}

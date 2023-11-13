@@ -14,7 +14,7 @@ const ReviewCard = ({ review }:any) => {
                   <div className="box" key={val?.id}>
                     <div className="details">
                       <div className="img">
-                        <Image src={val?.user?.profileImg[0]} alt="" height={144} width={349}/>
+                        <Image src={val?.user?.profileImg[0]} alt="" height={100} width={100} />
                       </div>
                       <label>{val?.user?.address}</label>
                       <h4>{val?.user?.name}</h4>

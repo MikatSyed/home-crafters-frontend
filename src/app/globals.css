@@ -499,7 +499,7 @@ header {
     position: absolute;
     bottom: 0;
     left: 60px;
-    background-color: #1eb2a6;
+    background-color: #27ae60;
     color: #fff;
   }
   .testimonal .name {
@@ -510,7 +510,7 @@ header {
     margin-bottom: 5px;
   }
   .testimonal .name span {
-    color: #1eb2a6;
+    color: #27ae60;
   }
   .testimonal p {
     margin-top: 20px;
@@ -518,7 +518,7 @@ header {
     transition: 0.5s;
   }
   .testimonal .items:hover {
-    background-color: #1eb2a6;
+    background-color: #27ae60;
     color: #fff;
     cursor: pointer;
   }
@@ -528,7 +528,7 @@ header {
   }
   .testimonal .items:hover i {
     background-color: #fff;
-    color: #1eb2a6;
+    color: #27ae60;
   }
   
  
@@ -544,12 +544,12 @@ header {
   border-radius: 50%;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.3);
-  color: #1eb2a6;
+  color: #27ae60;
   transition: 0.5s;
 }
 .icon:hover {
   cursor: pointer;
-  background-color: #1eb2a6;
+  background-color: #27ae60;
   color: #fff;
 }
 a {
@@ -583,12 +583,12 @@ li {
 .outline-btn {
   margin: 0;
   box-shadow: none;
-  border: 2px solid #1eb2a6;
+  border: 2px solid #27ae60;
   width: 100%;
   transition: 0.5s;
 }
 .outline-btn:hover {
-  background-color: #1eb2a6;
+  background-color: #27ae60;
   color: #fff;
 }
 .grid3 {

@@ -23,7 +23,7 @@ const BlogCards = ({data}:any) => {
               <Col xs={24} sm={24} md={12} lg={8} xl={8} key={id}>
                 <div className="box shadow">
                   <div className="img">
-                    <Image src={blogImg[0]} alt="" height={183} width={349} />
+                    <Image src={blogImg[0]} alt="" height={183} width={349} className="service_img"/>
                   </div>
                 
                   <div className="text">

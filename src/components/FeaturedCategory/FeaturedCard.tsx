@@ -15,7 +15,7 @@ const FeaturedCard = (data:any) => {
           <div className={styles.box} key={item.id}>
              <Image src={item?.categoryImg} alt="" width={100} height={100} />
             <h4>{item.title}</h4>
-            {/* <label>{item?.service?.length}</label> */}
+      
           </div>
           </Link>
         ))}
