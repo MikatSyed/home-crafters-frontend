@@ -25,6 +25,11 @@ export const nav: { text: string; path: string }[] = [
       text: "contact",
       path: "/contact",
     },
+    {
+      text: "login",
+      path: "/login",
+    },
+  
   ];
   
   export const featured: { cover: any; name: string; total: string }[] = [

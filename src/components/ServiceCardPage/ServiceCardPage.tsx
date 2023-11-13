@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 
-const ServiceCard = ({data}:any) => {
+const ServiceCardPage = ({data}:any) => {
 
  
   return (
@@ -30,7 +30,7 @@ const ServiceCard = ({data}:any) => {
 
                   
                  
-                <Image src={serviceImg[0]} alt="" width={349} height={220} className="Service_img" />
+                <Image src={serviceImg[0]} alt="" width={289} height={220} className="Service_img" />
 
                  
                   <div className="text">
@@ -70,4 +70,4 @@ const ServiceCard = ({data}:any) => {
   );
 };
 
-export default ServiceCard;
+export default ServiceCardPage;

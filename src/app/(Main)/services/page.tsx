@@ -6,7 +6,9 @@ import { Radio } from "antd";
 import { useDebounced } from "@/redux/hook";
 import { useState } from "react";
 import { useCategoriesQuery } from "@/redux/api/categoryApi";
-import ServiceCard from "@/components/Services/ServiceCard";
+import ServiceCardPage from "@/components/ServiceCardPage/ServiceCardPage";
+// import ServiceCard from "@/components/Services/ServiceCard";
+
 const RadioGroup = Radio.Group;
 
 
@@ -155,7 +157,8 @@ const ServicesPage = () => {
             >
               <Input.Search placeholder="Search" style={{ width: 300 }} onChange={(e) => setSearchTerm(e.target.value)} />
             </div>
-          <ServiceCard  data={serviceData} />
+            
+          <ServiceCardPage  data={serviceData} />
         </div>
       </section>
          

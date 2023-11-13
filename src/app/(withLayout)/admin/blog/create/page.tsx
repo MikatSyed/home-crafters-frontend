@@ -20,11 +20,6 @@ const CreateUserPage = () => {
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
   const [addBlog] = useAddBlogMutation()
   
-
-
-  
-
-
   const onSubmit = async (values: any) => {
     const obj = { ...values };
     images.forEach((image) => {

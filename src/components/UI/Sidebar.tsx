@@ -102,7 +102,7 @@ const SideBar = () => {
         marginBottom: "1rem",
       }}
     >
-      {collapsed ? <Image src={logo} alt="logo" width="50"/> : <Image src={logo} alt="logo" width="100"/>}
+      {/* {collapsed ? <Image src={logo} alt="logo" width="50"/> : <Image src={logo} alt="logo" width="50"/>} */}
     </div>
    </Link>
     <Menu

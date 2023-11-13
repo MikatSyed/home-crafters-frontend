@@ -1,14 +1,12 @@
-
 import Heading from "./Heading"
+import styles from "../../styles/hero.module.css"
 
 const Hero = () => {
   return (
     <>
-      <section className='hero'>
-        <div className='container'>
-          <Heading title='Search Your Next Home ' subtitle='Find new & featured property located in your local city.' />
-
-     
+      <section className={styles.hero}>
+        <div className={styles.container}>
+          <Heading title='Search Your Next Home Service ' subtitle='Find new & best services located in your local city.' />
         </div>
       </section>
     </>

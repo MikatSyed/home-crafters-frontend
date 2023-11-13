@@ -1,0 +1,25 @@
+.hero {
+	background-image: url("https://funny-daffodil-350bc9.netlify.app/static/media/banner.1a3c8a0a448e8e24f6a0.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 90vh;
+	width: 100%;
+  }
+  .hero .container {
+	padding-top: 15%;
+  }
+  .hero h1 {
+	color: #fff;
+	font-size: 60px;
+  }
+  .hero p {
+	color: #fff;
+	opacity: 0.8;
+  }
+  
+  @media screen and (max-width: 800px) {
+	.hero .container {
+	  padding-top: 30%;
+	}
+  }
