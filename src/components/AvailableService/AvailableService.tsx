@@ -16,7 +16,7 @@ const AvailableService = () => {
   const { data } = useServicesQuery(undefined);
 
   let serviceData: any = data?.data.filter(
-    (data: any) => data.availbility === "available"
+    (data: any) => data?.availbility === "available"
   );
   
 
