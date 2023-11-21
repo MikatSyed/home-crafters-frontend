@@ -4,12 +4,11 @@ import { ResultStatusType } from 'antd/es/result';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-const PaymentSuccess = ({ searchParams }: any) => {
-    const { status } = searchParams;
-  // console.log(searchParams);
-  const resultTitle =
-    status === "success" ? "Successfully Paid" : "Something Went Wrong...";
+const PaymentSuccess = () => {
     const router = useRouter()
+    const status = "success"
+    const resultTitle =
+    "Successfully Paid"
     return (
         <div>
             <Result
