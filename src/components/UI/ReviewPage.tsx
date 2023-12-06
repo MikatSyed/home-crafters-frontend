@@ -27,10 +27,11 @@ const ReviewPage = (id:any) => {
    console.log(obj);
     try {
      const res =  await addReview(obj).unwrap();
+     console.log(res);
      if(res?.data?.id){
       setRatingValue(0)
      }
-      toast(res.message,
+      toast(res?.message,
         {
           icon:  <span style={{color:"green"}}>✔</span>,
           style: {

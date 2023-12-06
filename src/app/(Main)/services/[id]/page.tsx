@@ -1,6 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Card, Typography, Row, Col, Button, message, Rate } from "antd";
+import {
+  Card,
+  Typography,
+  Row,
+  Col,
+  Button,
+  message,
+  Rate,
+  Skeleton,
+  CalendarProps,
+} from "antd";
 import { useServiceQuery } from "@/redux/api/servicesApi";
 import Image from "next/image";
 import { useTimeSlotsQuery } from "@/redux/api/timeSlot";
@@ -12,15 +22,23 @@ import {
   useCheckAvailableSlotQuery,
 } from "@/redux/api/bookingApi";
 import { Dayjs } from "dayjs";
-const { Meta } = Card;
 import { Toaster } from "react-hot-toast";
 import ReviewPage from "@/components/UI/ReviewPage";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import { isLoggedIn } from "../../../../../services/auth.service";
 import Loading from "@/app/loading";
 import { useReviewByServiceIdQuery } from "@/redux/api/reviewApi";
 import Heading from "@/components/Hero/Heading";
 import ReviewCard from "@/components/UI/ReviewCard";
+import {
+  FaDollarSign,
+  FaMapMarkerAlt,
+  FaClock,
+  FaInfoCircle,
+} from "react-icons/fa";
+import { MdCategory } from "react-icons/md";
+import { Calendar } from "antd";
+import moment from "moment";
 
 type IDProps = {
   params: any;
@@ -36,10 +54,12 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
   const currentDate = new Date();
   let formattedDate = currentDate.toISOString().split("T")[0];
   const [selectedSlotId, setSelectedSlotId] = useState(null);
-  const {data:reviewData} = useReviewByServiceIdQuery(id);
-  const reviews  = reviewData?.data;
+  const { data: reviewData } = useReviewByServiceIdQuery(id);
+  const reviews = reviewData?.data;
+  console.log(reviews, "fgfg");
 
   const [selectedDate, setSelectedDate] = useState<Dayjs | string>();
+  console.log(selectedDate);
   if (selectedDate === undefined) {
     setSelectedDate(formattedDate);
   }
@@ -50,19 +70,21 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
   const [addBooking, { isSuccess }] = useAddBookingMutation();
   const { data: checkAvailableSlotData } =
     useCheckAvailableSlotQuery(selectedDate);
-
+  console.log(checkAvailableSlotData);
   const onSubmit = async (data: any) => {
-    if (data?.bookingDate === undefined) {
-      data.bookingDate = formattedDate;
-    }
+    // if (data?.bookingDate === undefined) {
+    //   data.bookingDate = formattedDate;
+    // }
     let booking = { ...data };
+    booking.bookingDate = selectedDate;
     booking.serviceId = id;
     booking.slotId = selectedSlotId;
     booking.userId = loginData?.data?.id;
+    console.log(booking);
     try {
       let res = await addBooking(booking).unwrap();
       console.log(res);
-      message.success(res?.message);
+      // message.success(res?.message);
       setSelectedSlotId(null);
       router.push(`/confirmBooking/${res?.data?.id}`);
     } catch (err: any) {
@@ -89,136 +111,233 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
   });
 
   const handleDateChange = (date: Dayjs | null, dateString: string) => {
-    setSelectedDate(dateString); // The dateString is already in 'YYYY-MM-DD' format
+    setSelectedDate(dateString);
+    setSelectedSlotId(null);
+    // The dateString is already in 'YYYY-MM-DD' format
   };
 
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
-   
 
-      <div style={{ marginTop: "5rem", marginBottom: "5rem" }}>
-        {serviceDataLoading ? (
-         <Loading/>
-        ) : (
-          <Row gutter={[16, 16]}>
-            <Col xs={24} lg={12}>
-              <Card style={cardStyle}>
-                <Image
-                  src={serviceData?.serviceImg[0]}
-                  alt={serviceData?.name}
-                  width={200}
-                  height={200}
-                  style={imageStyle}
-                />
-                <Meta
-                  title={serviceData?.name}
-                  description={serviceData?.description}
-                />
-              </Card>
-            </Col>
-            <Col xs={24} lg={12}>
-              <div style={serviceInfoStyle}>
-                <Typography.Title level={4}>Service Details</Typography.Title>
-                <p>
-                  <strong>Price:</strong> ${serviceData?.price}
-                </p>
-                <p>
-                  <strong>Location:</strong> {serviceData?.location}
-                </p>
-                <p>
-                  <strong>Availability:</strong> {serviceData?.availbility}
-                </p>
-                <p>
-                  <strong>Duration:</strong> {serviceData?.duration}
-                </p>
-                <p>
-                  <strong>Category:</strong> {serviceData?.category?.title}
-                </p>
-                <p>
-                  <strong>Created At:</strong> {serviceData?.createdAt}
-                </p>
+      <section className="testimonal " style={{ marginTop: "15px" }}>
+        <div className="container">
+          {serviceDataLoading ? (
+            <Skeleton active />
+          ) : (
+            <>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <h1
+                  style={{
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    fontSize: "35px",
+                  }}
+                >
+                  {serviceData?.name}
+                </h1>
               </div>
-              {serviceData.availbility === "available" ? (
-                <>
+
+              <Row style={{ marginTop: "20px" }}>
+                <Col xs={24} sm={24} lg={12} xl={12}>
+                  <div className="service-details-container">
+                    <div className="detail-item">
+                      <MdCategory />
+                      <span className="detail-title"> Category</span>
+                      <p>{serviceData?.category?.title}</p>
+                    </div>
+
+                    <div className="detail-item">
+                      <FaDollarSign />
+                      <span className="detail-title"> Price</span>
+                      <p>{serviceData?.price}</p>
+                    </div>
+
+                    <div className="detail-item">
+                      <FaMapMarkerAlt />
+                      <span className="detail-title"> Location</span>
+                      <p>{serviceData?.location}</p>
+                    </div>
+
+                    <div className="detail-item">
+                      <FaInfoCircle />
+                      <span className="detail-title"> Availability</span>
+                      <p>{serviceData?.availbility}</p>
+                    </div>
+
+                    <div className="detail-item">
+                      <FaClock />
+                      <span className="detail-title"> Duration</span>
+                      <p>{serviceData?.duration}</p>
+                    </div>
+
+                    <div className="detail-item">
+                      <FaInfoCircle />
+                      <span className="detail-title"> Description</span>
+                      <p>{serviceData?.description}</p>
+                    </div>
+                  </div>
+                </Col>
+                <Col xs={24} sm={24} lg={12} xl={12}>
+                  {serviceData?.serviceImg.map((image: any,index:any) => (
+                   <div key={index}>
+                    <Image
+                      src={image}
+                      alt={`Image`}
+                      width={516}
+                      height={344}
+                      className="Service_img"
+                    />
+                   </div>
+                  ))}
+                </Col>
+
+                {serviceData.availbility === "available" ? (
                   <Form submitHandler={onSubmit}>
-                    <Col span={12} style={{ margin: "10px 0" }}>
-                      <FormDatePicker
-                        name="bookingDate"
-                        label="Select A Date"
-                        size="large"
-                        onChange={handleDateChange}
-                      />
-                    </Col>
-                    <Row gutter={16} style={{ marginTop: "20px" }}>
-                      {slotOptions?.map((slot: any) => (
-                        <Col key={slot.id} xs={24} lg={8}>
-                          <Button
+                    <Row>
+                      <Col xs={24} sm={24} lg={12} xl={12}>
+                        <div style={{ marginBottom: "20px" }}>
+                          <Typography.Title level={4}>
+                            Select A Date
+                          </Typography.Title>
+                          <Calendar
+                            fullscreen={false}
+                            onChange={(value) =>
+                              handleDateChange(
+                                value,
+                                value.format("YYYY-MM-DD")
+                              )
+                            }
+                            disabledDate={(current) =>
+                              current && current < moment().startOf("day")
+                            }
                             style={{
-                              width: "100%",
-                              marginBottom: "10px",
-                              backgroundColor:
-                                selectedSlotId === slot.value ? "orange" : "",
+                              border: "1px solid #d9d9d9",
+                              borderRadius: "4px",
+                              padding: "10px",
                             }}
-                            onClick={() => setSelectedSlotId(slot.value)}
-                            disabled={isSlotBooked(slot.value)}
+                          />
+                        </div>
+                      </Col>
+
+                      <Col xs={24} sm={24} lg={12} xl={12}>
+                        <div
+                          style={{ marginBottom: "20px" }}
+                          className="margin-lg"
+                        >
+                          <Typography.Title level={4}>
+                            Slot Time
+                          </Typography.Title>
+                          {/* <Row gutter={16}>
+                            {slotOptions?.map((slot: any) => (
+                              <Col key={slot.id} xs={24} lg={8}>
+                                <button
+                                  style={{
+                                    width: "100%",
+                                    marginBottom: "10px",
+                                    backgroundColor:
+                                      selectedSlotId === slot.value
+                                        ? "black"
+                                        : "",
+                                    cursor: isSlotBooked(slot.value)
+                                      ? "not-allowed"
+                                      : "pointer",
+                                    opacity: isSlotBooked(slot.value) ? 0.7 : 1,
+                                  }}
+                                  onClick={() => setSelectedSlotId(slot.value)}
+                                  disabled={isSlotBooked(slot.value)}
+                                  className="btn2"
+                                >
+                                  {slot.label}
+                                </button>
+                              </Col>
+                            ))}
+                          </Row> */}
+                          <Row gutter={16} style={{ marginTop: "20px" }}>
+                            {slotOptions?.map((slot: any) => (
+                              <Col key={slot.id} xs={24} lg={8}>
+                                <button
+                                  className="slotBtn"
+                                  style={{
+                                    width: "100%",
+                                    marginBottom: "10px",
+                                    backgroundColor:
+                                      selectedSlotId === slot.value
+                                        ? "#27ae60"
+                                        : "",
+                                    color:
+                                      selectedSlotId === slot.value
+                                        ? "#fff"
+                                        : "",
+                                    opacity: isSlotBooked(slot.value) ? 0.3 : 1,
+                                    cursor: isSlotBooked(slot.value)
+                                      ? "not-allowed"
+                                      : "pointer",
+                                  }}
+                                  onClick={() => setSelectedSlotId(slot.value)}
+                                  disabled={isSlotBooked(slot.value)}
+                                >
+                                  {slot.label}
+                                </button>
+                              </Col>
+                            ))}
+                          </Row>
+                          <Col>
+                            <button
+                              className={`btn4 ${
+                                !selectedSlotId ? "disabledBtn" : ""
+                              }`}
+                              type="submit"
+                              disabled={!selectedSlotId}
+                            >
+                              Submit
+                            </button>
+                          </Col>
+                          {/* <button
+                            className="btn4"
+                    
+                            type="submit"
+                            disabled={!selectedSlotId}
+                            style={{
+                              marginTop: "10px",
+                              opacity: !selectedSlotId ? 0.7 : 1,
+                              pointerEvents: !selectedSlotId ? "none" : "auto", // Disable pointer events when button is disabled
+                            }}
                           >
-                            {slot.label}
-                          </Button>
-                        </Col>
-                      ))}
+                            Reserve Now
+                          </button> */}
+                        </div>
+                      </Col>
                     </Row>
-                    <Col>
-                      <Button
-                        type="primary"
-                        htmlType="submit"
-                        disabled={!selectedSlotId}
-                      >
-                        Reserve Now
-                      </Button>
-                    </Col>
                   </Form>
-                </>
-              ) : (
-                <> </>
-              )}
+                ) : (
+                  <> </>
+                )}
+              </Row>
+            </>
+          )}
+
+          <section className="team background">
+            <div className="container">
+              <Heading
+                title="Our Client Reviews"
+                subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+              />
+
+              <ReviewCard review={reviews} />
+            </div>
             <ReviewPage userId={loginData?.data?.id} serviceId={id} />
-            </Col>
-          </Row>
-        )}
-       
-      
-        <section className="team background">
-      <div className="container">
-        <Heading
-          title="Our Client Reviews"
-          subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
-        />
-            
-          <ReviewCard review={reviews} />
-      </div>
-    </section>
-      </div>
- 
+          </section>
+        </div>
+      </section>
     </>
   );
 };
 
 export default ServiceDetailsPage;
-
-const cardStyle = {
-  width: "100%",
-  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-};
-
-const imageStyle = {
-  display: "block",
-  margin: "0 auto",
-};
-
-const serviceInfoStyle = {
-  padding: "20px",
-  border: "1px solid #e0e0e0",
-  borderRadius: "4px",
-  backgroundColor: "#f9f9f9",
-};

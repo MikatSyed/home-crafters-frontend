@@ -35,9 +35,11 @@ const CreateServicePage = () => {
     console.log(obj);
     try {
       const res = await addService(obj).unwrap();
+      console.log(res);
       setImages([]);
       setImagesPreview([]);
-      toast("Available Service Created Successfully", {
+      const message = res?.message || "Service Created successfully."
+      toast(message, {
         icon: <span style={{ color: "green" }}>✔</span>,
         style: {
           borderRadius: "10px",

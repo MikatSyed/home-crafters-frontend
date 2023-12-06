@@ -43,11 +43,11 @@ address: "Muradpur,Chittagong",
 phone: "01858832211"
   }
   try {
-    console.log("hello");
-    const res = await initialPayment(data).unwrap();
-    console.log("clicked");
-    console.log(res);
-    router.push(res?.data);
+    // console.log("hello");
+    // const res = await initialPayment(data).unwrap();
+    // console.log("clicked");
+    // console.log(res);
+    router.push('user/booking');
   } catch (error) {}
 };
 

@@ -28,6 +28,7 @@ const CreateCategoryPage = () => {
 
     try {
       const res = await addCategory(obj).unwrap();
+      console.log(res);
       setImages([]);
       setImagesPreview([]);
       toast(res?.message, {

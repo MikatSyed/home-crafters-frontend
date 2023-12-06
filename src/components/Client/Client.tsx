@@ -18,31 +18,31 @@ const Client = () => {
              <div>
         <Marquee direction="right" speed={100} delay={5}>
           <div className="image_wrapper">
-            <Image src={img1} alt="" height={200} width={200}/>
+            <Image src={img1} alt="" height={100} width={80}/>
           </div>
           <div className="image_wrapper">
-          <Image src={img2} alt="" height={200} width={200}/>
+          <Image src={img2} alt="" height={100} width={80}/>
           </div>
           <div className="image_wrapper">
-          <Image src={img3} alt="" height={200} width={200}/>
+          <Image src={img3} alt="" height={100} width={80}/>
           </div>
           <div className="image_wrapper">
-          <Image src={img4} alt="" height={200} width={200}/>
+          <Image src={img4} alt="" height={100} width={80}/>
           </div>
           <div>
-          <Image src={img5} alt="" height={200} width={200}/>
+          <Image src={img5} alt="" height={100} width={80}/>
           </div>
           <div className="image_wrapper">
-          <Image src={img6} alt="" height={200} width={200}/>
+          <Image src={img6} alt="" height={100} width={80}/>
           </div>
           <div className="image_wrapper">
-          <Image src={img7} alt="" height={200} width={200}/>
+          <Image src={img7} alt="" height={100} width={80}/>
           </div>
           <div className="image_wrapper">
-          <Image src={img8} alt="" height={200} width={200}/>
+          <Image src={img8} alt="" height={100} width={80}/>
           </div>
           <div className="image_wrapper">
-          <Image src={img9} alt="" height={200} width={200}/>
+          <Image src={img9} alt="" height={100} width={80}/>
           </div>
          
         </Marquee>
