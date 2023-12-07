@@ -10,12 +10,12 @@ import {
   Rate,
   Skeleton,
   CalendarProps,
+  Modal,
 } from "antd";
 import { useServiceQuery } from "@/redux/api/servicesApi";
 import Image from "next/image";
 import { useTimeSlotsQuery } from "@/redux/api/timeSlot";
 import Form from "@/components/Forms/Form";
-import FormDatePicker from "@/components/Forms/FormDatePicker";
 import { useLoggedUserQuery } from "@/redux/api/userApi";
 import {
   useAddBookingMutation,
@@ -26,10 +26,6 @@ import { Toaster } from "react-hot-toast";
 import ReviewPage from "@/components/UI/ReviewPage";
 import { useRouter } from "next/navigation";
 import { isLoggedIn } from "../../../../../services/auth.service";
-import Loading from "@/app/loading";
-import { useReviewByServiceIdQuery } from "@/redux/api/reviewApi";
-import Heading from "@/components/Hero/Heading";
-import ReviewCard from "@/components/UI/ReviewCard";
 import {
   FaDollarSign,
   FaMapMarkerAlt,
@@ -39,6 +35,7 @@ import {
 import { MdCategory } from "react-icons/md";
 import { Calendar } from "antd";
 import moment from "moment";
+import Review from "@/components/Review/Review";
 
 type IDProps = {
   params: any;
@@ -54,16 +51,11 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
   const currentDate = new Date();
   let formattedDate = currentDate.toISOString().split("T")[0];
   const [selectedSlotId, setSelectedSlotId] = useState(null);
-  const { data: reviewData } = useReviewByServiceIdQuery(id);
-  const reviews = reviewData?.data;
-  console.log(reviews, "fgfg");
-
   const [selectedDate, setSelectedDate] = useState<Dayjs | string>();
   console.log(selectedDate);
   if (selectedDate === undefined) {
     setSelectedDate(formattedDate);
   }
-
   const { data: sData, isLoading: serviceDataLoading } = useServiceQuery(id);
   const { data: slotD, isLoading: slotsLoading } = useTimeSlotsQuery(undefined);
   const { data: loginData } = useLoggedUserQuery(undefined);
@@ -116,6 +108,8 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
     // The dateString is already in 'YYYY-MM-DD' format
   };
 
+
+
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
@@ -128,9 +122,7 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
             <>
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  textAlign:'center'
                 }}
               >
                 <h1
@@ -142,6 +134,7 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
                 >
                   {serviceData?.name}
                 </h1>
+                <p style={{color:'#27ae60'}}>(Average {serviceData?.averageRating} Rating out of {serviceData?.totalReviews} Reviews)</p>
               </div>
 
               <Row style={{ marginTop: "20px" }}>
@@ -185,56 +178,57 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
                   </div>
                 </Col>
                 <Col xs={24} sm={24} lg={12} xl={12}>
-                  {serviceData?.serviceImg.map((image: any,index:any) => (
-                   <div key={index}>
-                    <Image
-                      src={image}
-                      alt={`Image`}
-                      width={516}
-                      height={344}
-                      className="Service_img"
-                    />
-                   </div>
+                  {serviceData?.serviceImg.map((image: any, index: any) => (
+                    <div key={index}>
+                      <Image
+                        src={image}
+                        alt={`Image`}
+                        width={516}
+                        height={344}
+                        className="Service_img"
+                      />
+                    </div>
                   ))}
                 </Col>
 
                 {serviceData.availbility === "available" ? (
-                  <Form submitHandler={onSubmit}>
-                    <Row>
-                      <Col xs={24} sm={24} lg={12} xl={12}>
-                        <div style={{ marginBottom: "20px" }}>
-                          <Typography.Title level={4}>
-                            Select A Date
-                          </Typography.Title>
-                          <Calendar
-                            fullscreen={false}
-                            onChange={(value) =>
-                              handleDateChange(
-                                value,
-                                value.format("YYYY-MM-DD")
-                              )
-                            }
-                            disabledDate={(current) =>
-                              current && current < moment().startOf("day")
-                            }
-                            style={{
-                              border: "1px solid #d9d9d9",
-                              borderRadius: "4px",
-                              padding: "10px",
-                            }}
-                          />
-                        </div>
-                      </Col>
+                  <>
+                    <Form submitHandler={onSubmit}>
+                      <Row>
+                        <Col xs={24} sm={24} lg={12} xl={12}>
+                          <div style={{ marginBottom: "20px" }}>
+                            <Typography.Title level={4}>
+                              Select A Date
+                            </Typography.Title>
+                            <Calendar
+                              fullscreen={false}
+                              onChange={(value) =>
+                                handleDateChange(
+                                  value,
+                                  value.format("YYYY-MM-DD")
+                                )
+                              }
+                              disabledDate={(current) =>
+                                current && current < moment().startOf("day")
+                              }
+                              style={{
+                                border: "1px solid #d9d9d9",
+                                borderRadius: "4px",
+                                padding: "10px",
+                              }}
+                            />
+                          </div>
+                        </Col>
 
-                      <Col xs={24} sm={24} lg={12} xl={12}>
-                        <div
-                          style={{ marginBottom: "20px" }}
-                          className="margin-lg"
-                        >
-                          <Typography.Title level={4}>
-                            Slot Time
-                          </Typography.Title>
-                          {/* <Row gutter={16}>
+                        <Col xs={24} sm={24} lg={12} xl={12}>
+                          <div
+                            style={{ marginBottom: "20px" }}
+                            className="margin-lg"
+                          >
+                            <Typography.Title level={4}>
+                              Slot Time
+                            </Typography.Title>
+                            {/* <Row gutter={16}>
                             {slotOptions?.map((slot: any) => (
                               <Col key={slot.id} xs={24} lg={8}>
                                 <button
@@ -259,83 +253,76 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
                               </Col>
                             ))}
                           </Row> */}
-                          <Row gutter={16} style={{ marginTop: "20px" }}>
-                            {slotOptions?.map((slot: any) => (
-                              <Col key={slot.id} xs={24} lg={8}>
+                            <Row gutter={16} style={{ marginTop: "20px" }}>
+                              {slotOptions?.map((slot: any) => (
+                                <Col key={slot.id} xs={24} lg={8}>
+                                  <button
+                                    type="button"
+                                    className="slotBtn"
+                                    style={{
+                                      width: "100%",
+                                      marginBottom: "10px",
+                                      backgroundColor:
+                                        selectedSlotId === slot.value
+                                          ? "#27ae60"
+                                          : "",
+                                      color:
+                                        selectedSlotId === slot.value
+                                          ? "#fff"
+                                          : "",
+                                      opacity: isSlotBooked(slot.value)
+                                        ? 0.3
+                                        : 1,
+                                      cursor: isSlotBooked(slot.value)
+                                        ? "not-allowed"
+                                        : "pointer",
+                                    }}
+                                    onClick={() =>
+                                      setSelectedSlotId(slot.value)
+                                    }
+                                    disabled={isSlotBooked(slot.value)}
+                                  >
+                                    {slot.label}
+                                  </button>
+                                </Col>
+                              ))}
+                            </Row>
+                            <Row gutter={16}>
+                              <Col>
                                 <button
-                                  className="slotBtn"
-                                  style={{
-                                    width: "100%",
-                                    marginBottom: "10px",
-                                    backgroundColor:
-                                      selectedSlotId === slot.value
-                                        ? "#27ae60"
-                                        : "",
-                                    color:
-                                      selectedSlotId === slot.value
-                                        ? "#fff"
-                                        : "",
-                                    opacity: isSlotBooked(slot.value) ? 0.3 : 1,
-                                    cursor: isSlotBooked(slot.value)
-                                      ? "not-allowed"
-                                      : "pointer",
-                                  }}
-                                  onClick={() => setSelectedSlotId(slot.value)}
-                                  disabled={isSlotBooked(slot.value)}
+                                  className={`btn4 ${
+                                    !selectedSlotId ? "disabledBtn" : ""
+                                  }`}
+                                  type="submit"
+                                  disabled={!selectedSlotId}
                                 >
-                                  {slot.label}
+                                  Submit
                                 </button>
                               </Col>
-                            ))}
-                          </Row>
-                          <Col>
-                            <button
-                              className={`btn4 ${
-                                !selectedSlotId ? "disabledBtn" : ""
-                              }`}
-                              type="submit"
-                              disabled={!selectedSlotId}
-                            >
-                              Submit
-                            </button>
-                          </Col>
-                          {/* <button
-                            className="btn4"
+                            
+                            </Row>
+                          </div>
+                        </Col>
+                      </Row>
+                    </Form>
+                    <Col>
                     
-                            type="submit"
-                            disabled={!selectedSlotId}
-                            style={{
-                              marginTop: "10px",
-                              opacity: !selectedSlotId ? 0.7 : 1,
-                              pointerEvents: !selectedSlotId ? "none" : "auto", // Disable pointer events when button is disabled
-                            }}
-                          >
-                            Reserve Now
-                          </button> */}
-                        </div>
-                      </Col>
-                    </Row>
-                  </Form>
+                        <ReviewPage
+                          userId={loginData?.data?.id}
+                          serviceId={id}
+                        />
+                    </Col>
+                  </>
                 ) : (
                   <> </>
                 )}
               </Row>
             </>
           )}
-
-          <section className="team background">
-            <div className="container">
-              <Heading
-                title="Our Client Reviews"
-                subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
-              />
-
-              <ReviewCard review={reviews} />
-            </div>
-            <ReviewPage userId={loginData?.data?.id} serviceId={id} />
-          </section>
         </div>
       </section>
+      <Review serviceId={id}/>
+      {/* <ReviewPage userId={loginData?.data?.id} serviceId={id} /> */}
     </>
   );
 };

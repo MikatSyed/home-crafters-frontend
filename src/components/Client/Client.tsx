@@ -18,31 +18,34 @@ const Client = () => {
              <div>
         <Marquee direction="right" speed={100} delay={5}>
           <div className="image_wrapper">
-            <Image src={img1} alt="" height={100} width={80}/>
+            <Image src={img1} alt="" layout='responsive'/>
           </div>
           <div className="image_wrapper">
-          <Image src={img2} alt="" height={100} width={80}/>
+          <Image src={img2} alt="" layout='responsive'/>
           </div>
           <div className="image_wrapper">
-          <Image src={img3} alt="" height={100} width={80}/>
+          <Image src={img3} alt="" layout='responsive'/>
           </div>
           <div className="image_wrapper">
-          <Image src={img4} alt="" height={100} width={80}/>
+          <Image src={img4} alt="" layout='responsive'/>
           </div>
           <div>
-          <Image src={img5} alt="" height={100} width={80}/>
+          <Image src={img5} alt="" layout='responsive'/>
           </div>
           <div className="image_wrapper">
-          <Image src={img6} alt="" height={100} width={80}/>
+          <Image src={img6} alt="" layout='responsive'/>
           </div>
           <div className="image_wrapper">
-          <Image src={img7} alt="" height={100} width={80}/>
+          <Image src={img7} alt="" layout='responsive'/>
           </div>
           <div className="image_wrapper">
-          <Image src={img8} alt="" height={100} width={80}/>
+          <Image src={img8} alt="" layout='responsive'/>
           </div>
           <div className="image_wrapper">
-          <Image src={img9} alt="" height={100} width={80}/>
+          <Image src={img9} alt="" layout='responsive'/>
+          </div>
+          <div className="image_wrapper">
+          <Image src={img10} alt="" layout='responsive'/>
           </div>
          
         </Marquee>
