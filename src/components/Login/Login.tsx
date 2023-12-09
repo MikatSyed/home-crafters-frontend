@@ -12,6 +12,7 @@ import { authSchema } from "@/schemas/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast, { Toaster } from 'react-hot-toast';
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 
 type FormValues = {
@@ -19,31 +20,34 @@ type FormValues = {
   password: string;
 };
 
-const LoginPage = () => {
-  const [userLogin] = useUserLoginMutation();
-  const {push} = useRouter();
-
-
+const LoginPage = ({callbackUrl}:any) => {
+  // const [userLogin] = useUserLoginMutation();
+  // const {push} = useRouter();
 
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
-    console.log(data);
+   
     try {
-      const res = await userLogin({ ...data }).unwrap();
+      // const res = await userLogin({ ...data }).unwrap();
+      const res = await signIn("home-crafters", {
+        ...data,   
+        callbackUrl
+      });
+     
       // console.log(res)
-      if (res?.token) {  
-          push("/profile");
+      // if (res?.token) {  
+          // push("/profile");
           // message.success(res?.message)
-           toast(res?.message,
-          {
-            icon:  <span style={{color:"green"}}>✔</span>,
-            style: {
-              borderRadius: '10px',
-              background: '#FFBF00',
-              color: '#fff'
-            }
-          })
-      }
-      storeUserInfo({ accessToken: res?.token });
+          //  toast(res?.message,
+          // {
+          //   icon:  <span style={{color:"green"}}>✔</span>,
+          //   style: {
+          //     borderRadius: '10px',
+          //     background: '#FFBF00',
+          //     color: '#fff'
+          //   }
+          // })
+      // }
+      // storeUserInfo({ accessToken: res?.token });
      
     } catch (err: any) {
       // console.log(err);
@@ -58,6 +62,40 @@ const LoginPage = () => {
         })
     }
   };
+
+  // const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
+  //   console.log(data);
+  //   try {
+  //     const res = await userLogin({ ...data }).unwrap();
+  //     // console.log(res)
+  //     if (res?.token) {  
+  //         push("/profile");
+  //         // message.success(res?.message)
+  //          toast(res?.message,
+  //         {
+  //           icon:  <span style={{color:"green"}}>✔</span>,
+  //           style: {
+  //             borderRadius: '10px',
+  //             background: '#FFBF00',
+  //             color: '#fff'
+  //           }
+  //         })
+  //     }
+  //     storeUserInfo({ accessToken: res?.token });
+     
+  //   } catch (err: any) {
+  //     // console.log(err);
+  //     toast(err?.data,
+  //       {
+  //         icon:  <span style={{color:"white"}}>❌</span>,
+  //         style: {
+  //           borderRadius: '10px',
+  //           background: 'red',
+  //           color: '#fff'
+  //         }
+  //       })
+  //   }
+  // };
 
   return (
   <>

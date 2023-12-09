@@ -49,15 +49,7 @@ const CreateUserPage = () => {
 
   return (
     <>
-      <BreadCrumb
-        items={[
-          {
-            label: "Home",
-            link: "/",
-          },
-         
-        ]}
-      />
+   
        <Toaster  position="top-right"
   reverseOrder={false} />
       <div style={{marginLeft:'50px',marginTop:'100px'}}>

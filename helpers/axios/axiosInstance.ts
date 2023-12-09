@@ -1,7 +1,12 @@
 import { authKey } from "@/app/constants/storageKey";
+import { authOptions } from "@/lib/AuthOptions";
 import { IGenericErrorResponse, ResponseSuccessType } from "@/types";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import axios from "axios";
+import { getServerSession } from "next-auth";
+import { getSession, useSession } from "next-auth/react";
+
+
 
 const instance = axios.create()
 instance.defaults.headers.post["Content-Type"] = "application/json";
@@ -9,9 +14,12 @@ instance.defaults.headers["Accept"] = "application/json";
 instance.defaults.timeout = 30000;
 
 // Add a request interceptor
-instance.interceptors.request.use(function (config) {
+instance.interceptors.request.use(async function (config) {
     // Do something before request is sent
-    const accessToken = getFromLocalStorage(authKey)
+    const session : any = await getSession()
+    console.log(session,'20');
+    const accessToken = session?.token;
+    // console.log(accessToken,'accessToken');
     if(accessToken){
         config.headers.Authorization = accessToken;
     }

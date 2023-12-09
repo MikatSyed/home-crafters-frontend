@@ -1,16 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import {
-  Card,
   Typography,
   Row,
   Col,
-  Button,
   message,
-  Rate,
-  Skeleton,
-  CalendarProps,
-  Modal,
+  Skeleton
 } from "antd";
 import { useServiceQuery } from "@/redux/api/servicesApi";
 import Image from "next/image";
@@ -25,7 +20,6 @@ import { Dayjs } from "dayjs";
 import { Toaster } from "react-hot-toast";
 import ReviewPage from "@/components/UI/ReviewPage";
 import { useRouter } from "next/navigation";
-import { isLoggedIn } from "../../../../../services/auth.service";
 import {
   FaDollarSign,
   FaMapMarkerAlt,
@@ -43,10 +37,7 @@ type IDProps = {
 
 const ServiceDetailsPage = ({ params }: IDProps) => {
   const router = useRouter();
-  const isLogin = isLoggedIn();
-  if (!isLogin) {
-    router.push("/login");
-  }
+
   const { id } = params;
   const currentDate = new Date();
   let formattedDate = currentDate.toISOString().split("T")[0];

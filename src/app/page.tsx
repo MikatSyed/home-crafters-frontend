@@ -2,8 +2,11 @@
 import Nav from "@/components/Nav/Nav";
 import Home from "./home/page";
 import Footer from "@/components/Footer/Footer";
-
-const HomePage = () => {
+import { authOptions } from "@/lib/AuthOptions";
+import { getServerSession } from "next-auth/next";
+const HomePage = async() => {
+  const session = await getServerSession(authOptions);
+  console.log({session});
   return (
     <>
     <Nav/>
