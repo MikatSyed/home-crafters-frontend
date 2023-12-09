@@ -1,7 +1,7 @@
 "use server"
 export const getNewAccessToken = async (token: string) => {
     try {
-        const res = await fetch(`http://localhost:6060/api/v1/auth/refresh-token`, {
+        const res = await fetch(`https://home-crafters-mikatsyed.vercel.app/api/v1/auth/refresh-token`, {
             method: "POST",
             body: JSON.stringify({ refreshToken: token }),
             headers: {

@@ -17,7 +17,7 @@ export const authOptions: AuthOptions = {
             async authorize(credentials, req) {
               
                 try {
-                    const res = await fetch(`http://localhost:6060/api/v1/auth/login`, {
+                    const res = await fetch(`https://home-crafters-mikatsyed.vercel.app/api/v1/auth/login`, {
                         method: "POST",
                         body: JSON.stringify(credentials),
                         headers: { "Content-Type": "application/json" }
