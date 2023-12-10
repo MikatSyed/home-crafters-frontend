@@ -73,9 +73,9 @@ export const authOptions: AuthOptions = {
         maxAge: 24 * 60 * 60
     },
     jwt: {
-        secret: "FGHFGJFGJFGJHFGJGHJK"
+        secret: process.env.NEXTAUTH_SECRET
     },
-    secret: "FGHFGJFGJFGJHFGJGHJK",
+    secret: process.env.NEXTAUTH_SECRET,
     pages: {
         signIn: "/login",
         error: "/"

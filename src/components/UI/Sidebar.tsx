@@ -72,7 +72,7 @@ const SideBar = async () => {
         theme="light"
         defaultSelectedKeys={['1']}
         mode="inline"
-        items={sidebarItems(session?.role || "admin")}
+        items={sidebarItems(session?.role)}
         style={{ fontSize: '1rem', fontWeight: '500' }}
       />
     </Sider>
