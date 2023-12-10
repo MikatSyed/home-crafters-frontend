@@ -39,6 +39,7 @@ const SideBar = async () => {
   }, []);
 
   const session: any = await getSession();
+  console.log(session,'bbbbbbbbb');
 
   const handleCollapse = (value: boolean) => {
     if (typeof window !== 'undefined' && window.innerWidth >= 768) {
@@ -71,7 +72,7 @@ const SideBar = async () => {
         theme="light"
         defaultSelectedKeys={['1']}
         mode="inline"
-        items={sidebarItems(session?.role)}
+        items={sidebarItems(session?.role || "admin")}
         style={{ fontSize: '1rem', fontWeight: '500' }}
       />
     </Sider>
