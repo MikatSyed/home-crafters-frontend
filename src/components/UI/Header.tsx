@@ -1,58 +1,38 @@
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Button, Dropdown, Layout, MenuProps, Row, Space } from "antd";
-import { authKey } from '@/app/constants/storageKey';
-import { useRouter } from 'next/navigation';
-import { getUserInfo, removeUserInfo } from '../../../services/auth.service';
-import { useLoggedUserQuery } from '@/redux/api/userApi';
-const { Header: AntHeader } = Layout;
+"use client"
+import React from 'react';
 
-
+import logo from "../../assets/Home crafters f.png";
+import Image from 'next/image';
+import { signOut } from 'next-auth/react';
+import Link from 'next/link';
 
 const Header = () => {
-    const { role } = getUserInfo() as any;
-    const {push} = useRouter();
-    const { data } = useLoggedUserQuery(undefined);
-    const user = data?.data;
-    const profileImg = user?.profileImg;
-    const lastProfileImg = profileImg && profileImg.length > 0 ? profileImg[profileImg.length - 1] : null;
+  // const { push } = useRouter();
 
-    const logout = () => {
-        removeUserInfo(authKey);
-        push("/login")
-    }
-
-    const items: MenuProps["items"] = [
-        {
-          key: "1",
-          label: (
-            <Button onClick={logout} type="text" danger>
-              Logout
-            </Button>
-          ),
-        },
-      ];
+  const logout = () => {
+    signOut()
+  
+  };
 
   return (
-    <AntHeader style={{ backgroundColor: '#fff' }}>
-      <Row justify="end" align="middle"  style={{
-          height: "100%",
-        }}>
-             <p
-          style={{
-            margin: "0px 5px",
-            color:"black",
-           
-          }}
-        >
-          {role}
-        </p>
-        <Dropdown menu={{ items }}>
-          <Space wrap size={16}>
-          <Avatar size={50} src={lastProfileImg} />
-          </Space>
-        </Dropdown>
-      </Row>
-    </AntHeader>
+    <header style={{ backgroundColor: '#fff', padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div>
+      <Link href="/">
+      <Image
+          src={logo} // Replace with the actual path to your logo image
+          alt="Logo"
+          // style={{ height: 50, width: 'auto' }} // Adjust the height as needed
+          // layout='responsive'
+          height={50}
+          width={100}
+        />
+      </Link>
+      </div>
+      <div>
+        
+        <button  onClick={logout}>Logout</button>
+      </div>
+    </header>
   );
 };
 

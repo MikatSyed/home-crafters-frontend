@@ -186,6 +186,7 @@ const ManageSchedulePage = () => {
         totalPages={meta?.total}
         showSizeChanger={true}
         showPagination={true}
+        scroll={true}
       />
     </div>
   );

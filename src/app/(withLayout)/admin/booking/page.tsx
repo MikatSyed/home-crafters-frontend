@@ -84,6 +84,28 @@ const AdminPage = () => {
     {
       title: "Status",
       dataIndex: "status",
+      render: function (status: string) {
+        const cellStyle: React.CSSProperties = {
+          backgroundColor: status === "pending" ? "#ff98001a" : "#25b5791a",
+          color: status === "pending" ? "#ff9800" : "#25b579",
+          textAlign:  "center"
+        };
+  
+        return <div style={cellStyle}>{status}</div>;
+      },
+    },
+    {
+      title: "isPaid",
+      dataIndex: "isPaid",
+      render: function (isPaid: boolean) {
+        const cellStyle: React.CSSProperties = {
+          backgroundColor: isPaid ? "#25b5791a" : "#ff98001a",
+          color: isPaid ? "#25b579" : "#ff9800",
+          textAlign:  "center"
+        };
+  
+        return <div style={cellStyle}>{isPaid ? "Complete" : "Incomplete"}</div>;
+      },
     },
 
     {

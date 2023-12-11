@@ -22,4 +22,4 @@ export default withAuth(
   }
 )
 console.log("middleware");
-export const config = { matcher: [ "/services"] }
+export const config = { matcher: [ "/services","/profile"] }

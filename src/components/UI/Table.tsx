@@ -43,9 +43,7 @@ const UMTable = ({ loading = false,
            loading={loading}
             pagination={paginationConfig}
             onChange={onTableChange}
-            scroll={scroll ? {
-              x: 1000,    
-            }: {}}
+            scroll={scroll ? { x: 'max-content' } : undefined}
             />
        </>
     );

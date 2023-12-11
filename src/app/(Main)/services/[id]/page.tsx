@@ -69,7 +69,9 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
       console.log(res);
       // message.success(res?.message);
       setSelectedSlotId(null);
+     if(res?.data?.id){
       router.push(`/confirmBooking/${res?.data?.id}`);
+     }
     } catch (err: any) {
       console.log(err);
       message.error(err.data);

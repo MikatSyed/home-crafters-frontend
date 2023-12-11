@@ -164,6 +164,7 @@ const ManageDepartmentPage = () => {
         totalPages={meta}
         showSizeChanger={true}
         showPagination={true}
+        scroll={true}
       />
     </div>
   );
