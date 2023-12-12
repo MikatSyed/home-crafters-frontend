@@ -30,12 +30,13 @@ import { MdCategory } from "react-icons/md";
 import { Calendar } from "antd";
 import moment from "moment";
 import Review from "@/components/Review/Review";
+import { getSession } from "next-auth/react";
 
 type IDProps = {
   params: any;
 };
 
-const ServiceDetailsPage = ({ params }: IDProps) => {
+const ServiceDetailsPage = async({ params }: IDProps) => {
   const router = useRouter();
 
   const { id } = params;
@@ -43,17 +44,18 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
   let formattedDate = currentDate.toISOString().split("T")[0];
   const [selectedSlotId, setSelectedSlotId] = useState(null);
   const [selectedDate, setSelectedDate] = useState<Dayjs | string>();
-  console.log(selectedDate);
+  // console.log(selectedDate);
   if (selectedDate === undefined) {
     setSelectedDate(formattedDate);
   }
   const { data: sData, isLoading: serviceDataLoading } = useServiceQuery(id);
   const { data: slotD, isLoading: slotsLoading } = useTimeSlotsQuery(undefined);
+
   const { data: loginData } = useLoggedUserQuery(undefined);
+  console.log(loginData,'55');
   const [addBooking, { isSuccess }] = useAddBookingMutation();
   const { data: checkAvailableSlotData } =
     useCheckAvailableSlotQuery(selectedDate);
-  console.log(checkAvailableSlotData);
   const onSubmit = async (data: any) => {
     // if (data?.bookingDate === undefined) {
     //   data.bookingDate = formattedDate;
@@ -63,13 +65,13 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
     booking.serviceId = id;
     booking.slotId = selectedSlotId;
     booking.userId = loginData?.data?.id;
-    console.log(booking);
     try {
       let res = await addBooking(booking).unwrap();
-      console.log(res);
+      console.log(res,'70');
       // message.success(res?.message);
       setSelectedSlotId(null);
      if(res?.data?.id){
+      console.log('hitted');
       router.push(`/confirmBooking/${res?.data?.id}`);
      }
     } catch (err: any) {
@@ -80,11 +82,9 @@ const ServiceDetailsPage = ({ params }: IDProps) => {
   useEffect(() => {}, [selectedDate, selectedSlotId]);
 
   const serviceData = sData?.data;
-  console.log(serviceData);
   const timeSlot = slotD?.data;
   let existingBookings = checkAvailableSlotData?.data;
   const isSlotBooked = (slotId: any) => {
-    console.log(slotId);
     return existingBookings?.some((booking: any) => booking.slotId === slotId);
   };
 
