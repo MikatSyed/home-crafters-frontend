@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:6060/api/v1"
+const BASE_URL = "https://home-crafters-mikatsyed.vercel.app/api/v1"
 export async function getAllBlog() {
     const res = await fetch(`${BASE_URL}/blogs`, { next: { tags: ['blogs'] } });
 
