@@ -30,13 +30,13 @@ import { MdCategory } from "react-icons/md";
 import { Calendar } from "antd";
 import moment from "moment";
 import Review from "@/components/Review/Review";
-import { getSession } from "next-auth/react";
+
 
 type IDProps = {
   params: any;
 };
 
-const ServiceDetailsPage = async({ params }: IDProps) => {
+const ServiceDetailsPage = ({ params }: IDProps) => {
   const router = useRouter();
 
   const { id } = params;

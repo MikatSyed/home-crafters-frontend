@@ -8,11 +8,14 @@ import Image from 'next/image';
 import { useBlogsQuery } from '@/redux/api/blogApi';
 import dayjs from "dayjs";
 import { Toaster } from 'react-hot-toast';
+import { getAllBlog } from '@/lib/fetch';
 
 const { Title } = Typography;
 
-const BlogCard = () => {
-  const { data } = useBlogsQuery(undefined);
+const BlogCard = async() => {
+  const blogs = await getAllBlog()
+  const blogData = blogs?.data;
+  console.log(blogData);
 
   return (
     <>
@@ -32,7 +35,7 @@ const BlogCard = () => {
       <Toaster position="top-right" reverseOrder={false} />
 
       <Row gutter={16}>
-        {data?.data?.map((blog: any) => (
+        {blogData?.map((blog: any) => (
           <Col key={blog?.id} xs={24} sm={12} md={8} lg={6}>
            <Link href={`/blog/${blog.id}`}>
            <Card style={{ marginBottom: '20px' }} hoverable>

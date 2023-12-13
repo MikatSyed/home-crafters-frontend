@@ -1,15 +1,17 @@
-"use client";
+
 import { useServicesQuery } from "@/redux/api/servicesApi";
 import Heading from "../Hero/Heading"
 import ServiceCard from "./ServiceCard"
+import { getAllService } from "@/lib/fetch";
 
-const Services = () => {
-  const { data } = useServicesQuery(undefined);
-  console.log(data);
-  let serviceData: any = data?.data.filter(
+const Services = async() => {
+  // const { data } = useServicesQuery(undefined);
+  const service = await getAllService()
+  console.log(service);
+  let serviceData: any = service?.data.filter(
     (data: any) => data?.availbility === "available"
   );
-console.log(serviceData);
+
   return (
     <>
       <section className='recent padding'>

@@ -1,17 +1,10 @@
-"use client";
 import BlogCards from "@/components/Blog/BlogCards";
 import Heading from "@/components/Hero/Heading";
 import { getAllBlog } from "@/lib/fetch";
-import { useBlogsQuery } from "@/redux/api/blogApi";
-
-
 
 
 const Blogs = async() => {
-  // const { data } = useBlogsQuery(undefined);
-  // let blogData: any = data?.data;
   const blogs = await getAllBlog()
-  console.log(blogs);
   const blogData = blogs?.data;
   return (
     <>

@@ -1,11 +1,10 @@
-"use client";
-import { useServicesQuery } from "@/redux/api/servicesApi";
 import Heading from "../Hero/Heading"
 import RecentCard from "../Services/ServiceCard"
+import { getAllService } from "@/lib/fetch";
 
-const UpcomingService = () => {
-  const { data } = useServicesQuery(undefined);
-  let serviceData: any = data?.data.filter(
+const UpcomingService = async() => {
+  const service = await getAllService()
+  let serviceData: any = service?.data.filter(
     (data: any) => data.availbility === "upcoming"
   );
 

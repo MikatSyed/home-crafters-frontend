@@ -5,3 +5,15 @@ export async function getAllBlog() {
     if (!res.ok) throw new Error("Failed To Fetch Data");
     return res.json();
 }
+export async function getAllService() {
+    const res = await fetch(`${BASE_URL}/services`, { next: { tags: ['services'] } });
+
+    if (!res.ok) throw new Error("Failed To Fetch Data");
+    return res.json();
+}
+export async function getAllCategories() {
+    const res = await fetch(`${BASE_URL}/categories`, { next: { tags: ['categories'] } });
+
+    if (!res.ok) throw new Error("Failed To Fetch Data");
+    return res.json();
+}

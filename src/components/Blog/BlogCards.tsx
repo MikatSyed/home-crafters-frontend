@@ -6,8 +6,7 @@ import dayjs from "dayjs";
 import Link from "next/link";
 import Image from "next/image";
 const BlogCards = ({data}:any) => {
-  console.log(data);
- 
+
   return (
     <>
       <div className="content mtop">
