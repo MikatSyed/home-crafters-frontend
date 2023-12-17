@@ -17,3 +17,15 @@ export async function getAllCategories() {
     if (!res.ok) throw new Error("Failed To Fetch Data");
     return res.json();
 }
+export async function getAllFaqs() {
+    const res = await fetch(`${BASE_URL}/faqs`, { next: { tags: ['faqs'] } });
+
+    if (!res.ok) throw new Error("Failed To Fetch Data");
+    return res.json();
+}
+export async function getAllReviews() {
+    const res = await fetch(`${BASE_URL}/review`, { next: { tags: ['reviews'] } });
+
+    if (!res.ok) throw new Error("Failed To Fetch Data");
+    return res.json();
+}

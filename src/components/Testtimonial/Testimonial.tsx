@@ -1,11 +1,11 @@
-"use client"
-import { useReviewsQuery } from '@/redux/api/reviewApi';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import ReviewCard from '../UI/ReviewCard';
 
-const Testimonial = () => {
-  const {data} = useReviewsQuery(undefined)
+
+import ReviewCard from '../UI/ReviewCard';
+import { getAllReviews } from '@/lib/fetch';
+
+const Testimonial = async() => {
+  const data = await getAllReviews()
+  console.log(data,'12');
   const reviews = data?.data?.data;
  
   return (

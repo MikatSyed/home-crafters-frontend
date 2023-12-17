@@ -9,6 +9,7 @@ const Review = (id:any) => {
   const {serviceId} = id;
   const {data} = useReviewByServiceIdQuery(serviceId)
   const reviews = data?.data;
+  // console.log(reviews);
 
   return (
     <>

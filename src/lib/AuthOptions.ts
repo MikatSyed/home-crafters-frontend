@@ -56,11 +56,11 @@ export const authOptions: AuthOptions = {
         }) {
             // console.log(session, "session auth option")
             // console.log(token, "token auth option inside session")
-            const verifiedToken = jwtHelpers.verifyToken(token?.accessToken, process.env.JWT_SECRET!)
+            const verifiedToken = jwtHelpers.verifyToken(token?.token, process.env.JWT_SECRET!)
             if (!verifiedToken) {
                 // console.log("token expired so new token generated")
-                const { data } = await getNewAccessToken(token?.accessToken)
-                token.accessToken = data?.accessToken
+                const { data } = await getNewAccessToken(token?.token)
+                token.token = data?.token
             }
             return {
                 ...session,

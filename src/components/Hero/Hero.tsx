@@ -1,7 +1,10 @@
+
 import Heading from "./Heading"
 import styles from "../../styles/hero.module.css"
 
+
 const Hero = () => {
+
   return (
     <>
       <section className={styles.hero}>

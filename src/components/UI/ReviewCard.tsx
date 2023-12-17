@@ -1,4 +1,4 @@
-
+"use client"
 import React from 'react';
 import Heading from '../Hero/Heading';
 import {BiSolidQuoteAltRight,BiSolidQuoteAltLeft } from 'react-icons/bi'
@@ -6,11 +6,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+
 import Image from 'next/image';
 import { Rate } from 'antd';
 
 const ReviewCard = ({reviews}:any) => {
-  console.log(reviews);
+  // console.log(reviews);
   return (
     <div>
      <section className='testimonal padding'>

@@ -7,7 +7,6 @@ import { getAllService } from "@/lib/fetch";
 const Services = async() => {
   // const { data } = useServicesQuery(undefined);
   const service = await getAllService()
-  console.log(service);
   let serviceData: any = service?.data.filter(
     (data: any) => data?.availbility === "available"
   );

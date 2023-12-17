@@ -1,4 +1,3 @@
-
 import { authKey } from "@/app/constants/storageKey";
 import { authOptions } from "@/lib/AuthOptions";
 import { IGenericErrorResponse, ResponseSuccessType } from "@/types";
@@ -18,11 +17,12 @@ instance.defaults.timeout = 30000;
 instance.interceptors.request.use(async function (config) {
     // Do something before request is sent
     const session : any = await getSession()
+    console.log(session,'20');
     const accessToken = session?.token;
     // console.log(accessToken,'accessToken');
-    
-    config.headers.Authorization = accessToken;
-    
+    if(accessToken){
+        config.headers.Authorization = accessToken;
+    }
     return config;
   }, function (error) {
     // Do something with request error

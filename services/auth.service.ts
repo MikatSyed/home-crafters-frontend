@@ -18,6 +18,11 @@ export const getUserInfo = () =>{
         return ""
     }
 }
+export const getUserToken = (token:string) =>{
+       console.log(token);
+        return token;
+    
+}
 
 
 export const removeUserInfo = (key:string) => {
