@@ -1,4 +1,12 @@
-export const getBaseUrl = ():string => {
-    
-    return process.env.NEXT_PUBLIC_API_BASE_URL || "https://home-crafters-mikatsyed.vercel.app/api/v1"
-}
+export const getBaseUrl = (): any => {
+    const environment = process.env.NODE_ENV;
+
+    switch (environment) {
+        case 'development':
+            return 'http://localhost:6060/api/v1'; // Replace with your development API URL
+        case 'production':
+            return process.env.NEXT_PUBLIC_API_BASE_URL;// Replace with your production API URL
+        default:
+            return ' http://localhost:6060/api/v1'; // Replace with a default API URL
+    }
+};

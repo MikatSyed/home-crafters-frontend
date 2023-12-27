@@ -7,7 +7,7 @@ import Heading from "../Hero/Heading"
 const Awards = () => {
   return (
     <>
-      <section className='awards padding'>
+      <section className='awards awards-padding'>
         <div className='container'>
           <Heading title='Over 1,24,000+ Happy User Bieng With Us Still They Love Our Services' subtitle='Our Awards' />
 

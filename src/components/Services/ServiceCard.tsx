@@ -55,7 +55,7 @@ const ServiceCard = ({data}:any) => {
                   </div>
                   <div className="button flex">
                     <div>
-                      <button className="btn2">${price}</button>{" "}
+                      <button className="btn2">৳{price}</button>{" "}
                     </div>
                     <span className="service_title">{category?.title}</span>
                   </div>

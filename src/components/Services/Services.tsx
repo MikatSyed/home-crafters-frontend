@@ -13,7 +13,7 @@ const Services = async() => {
 
   return (
     <>
-      <section className='recent padding'>
+      <section className='recent padding-bottom'>
         <div className='container'>
           <Heading title='Services Listed' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.' />
           <ServiceCard  data={serviceData} />
