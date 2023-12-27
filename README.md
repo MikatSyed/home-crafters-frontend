@@ -8,4 +8,4 @@ Super Admin Credential
  Admin Credential 
 
  Email : syed@gmail.com
- Password : syed123
+ Password : mikat123
