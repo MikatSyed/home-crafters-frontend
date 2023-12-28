@@ -11,7 +11,7 @@
   }
   .hero h1 {
 	color: #fff;
-	font-size: 60px;
+	font-size: 50px;
   }
   .hero p {
 	color: #fff;
@@ -22,4 +22,21 @@
 	.hero .container {
 	  padding-top: 30%;
 	}
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+	
+	.hero h1 {
+		
+		font-size: 40px;
+	  }
+  }
+  
+  /* Small devices (phones, 0px to 767px) */
+  @media screen and (max-width: 767px) {
+	
+	.hero h1 {
+		
+		font-size: 30px;
+	  }
   }

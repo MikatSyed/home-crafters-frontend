@@ -1,8 +1,6 @@
 "use client"
 import Footer from "@/components/Footer/Footer";
 import Nav from "@/components/Nav/Nav";
-import AppFooter from "@/components/UI/AppFooter";
-import AppNavbar from "@/components/UI/AppNavbar";
 import { Content } from "antd/es/layout/layout";
 
 
