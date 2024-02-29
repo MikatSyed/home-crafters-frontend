@@ -6,7 +6,6 @@ import Hero from '@/components/Hero/Hero';
 import Review from '@/components/Review/Review';
 import Services from '@/components/Services/Services';
 import UpcomingService from '@/components/UpcomingService/UpcomingService';
-import React from 'react';
 import BlogCard from '../(Main)/blog/page';
 import About from '@/components/About/About';
 
@@ -21,10 +20,10 @@ const Home = () => {
         <Services/>
         <Awards/>
         <UpcomingService/>
-        <FaqSection/>
         <Testimonial />
      
         <BlogCard/>
+        <FaqSection/>
         <Client/>
         {/* <Review/> */}
 

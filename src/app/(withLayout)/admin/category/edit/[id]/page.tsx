@@ -14,9 +14,9 @@ type IDProps = {
 const EditPage = ({params}:IDProps) => {
     const {id} = params;
   
-    const{data,isLoading} = useCategoryQuery(id)
+    const{data,isLoading}:any = useCategoryQuery(id)
     const[updateCategory] = useUpdateCategoryMutation();
-    
+   
 
     
     

@@ -5,7 +5,7 @@ import { tagTypes } from "../tag-types";
 const  URL = "/categories";
 
 export const categoryApi = baseApi.injectEndpoints({
-  endpoints: (build) => ({
+  endpoints: (build:any) => ({
 
     categories: build.query({
       query: () => {

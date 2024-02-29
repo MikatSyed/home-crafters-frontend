@@ -4,7 +4,6 @@ import loginImage from "../../assets/Tablet login-bro.png";
 import Image from "next/image";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import { SubmitHandler } from "react-hook-form";
 import { useUserLoginMutation } from "@/redux/api/authApi";
 import { useRouter } from "next/navigation";
 import { storeUserInfo } from "../../../services/auth.service";
@@ -24,7 +23,7 @@ const LoginPage = ({callbackUrl}:any) => {
   // const [userLogin] = useUserLoginMutation();
   // const {push} = useRouter();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
+  const onSubmit = async (data: any) => {
    
     try {
       // const res = await userLogin({ ...data }).unwrap();

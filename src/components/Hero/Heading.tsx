@@ -4,7 +4,7 @@ const Heading = ({ title, subtitle }:any) => {
     <>
       <div className='heading'>
         <h1>{title}</h1>
-        <p>{subtitle}</p>
+        <p >{subtitle}</p>
       </div>
     </>
   )

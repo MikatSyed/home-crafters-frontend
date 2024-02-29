@@ -8,7 +8,7 @@ import { Avatar } from "antd"
 import Image from "next/image"
 import logo from "../../assets/Home crafters f.png"
 import styles from "../../styles/nav.module.css";
-
+import { FaHouseChimneyWindow } from "react-icons/fa6";
 const Nav = () => {
   const { data } = useLoggedUserQuery(undefined);
   const user = data?.data;
@@ -19,30 +19,31 @@ const Nav = () => {
 
   return (
     <>
-      <header>
+      <header className="header">
         <div className='container flex'>
-          <div className='logo'>
-            <Image src={logo} alt='' height={44}  width={170}/>
+          <div>
+            {/* <Image src={logo} alt='' height={44}  width={170}/> */}
+          <h2  style={{color:'#fff'}}> <FaHouseChimneyWindow />  Home Crafter </h2> 
           </div>
           <div className='nav'>
           <ul className={navList ? "small" : "flex"}>
-              <li>
-                <Link href="/">{nav[0].text}</Link>
+              <li >
+                <Link href="/"  className="link" >{nav[0].text}</Link>
               </li>
-              <li>
-                <Link href="/about">{nav[1].text}</Link>
+              <li >
+                <Link href="/about"  className="link">{nav[1].text}</Link>
               </li>
-              <li>
-                <Link href="/services">{nav[2].text}</Link>
+              <li  >
+                <Link href="/services"  className="link">{nav[2].text}</Link>
               </li>
-              <li>
-                <Link href="/blog">{nav[3].text}</Link>
+              <li  >
+                <Link href="/blog" className="link">{nav[3].text}</Link>
               </li>
-              <li>
-                <Link href="/feedback">{nav[4].text}</Link>
+              <li  >
+                <Link href="/feedback" className="link">{nav[4].text}</Link>
               </li>
-              <li>
-                <Link href="/contact">{nav[5].text}</Link>
+              <li  >
+                <Link href="/contact" className="link">{nav[5].text}</Link>
               </li>
                 
               {navList && (

@@ -1,15 +1,17 @@
 
+"use client"
 import { useServicesQuery } from "@/redux/api/servicesApi";
 import Heading from "../Hero/Heading"
 import ServiceCard from "./ServiceCard"
 import { getAllService } from "@/lib/fetch";
 
-const Services = async() => {
-  // const { data } = useServicesQuery(undefined);
-  const service = await getAllService()
-  let serviceData: any = service?.data.filter(
-    (data: any) => data?.availbility === "available"
+const Services = () => {
+  const { data } = useServicesQuery(undefined);
+  // const service = await getAllService()
+  let serviceData: any = data?.data.filter(
+    (data: any) => data.availbility === "available"
   );
+
 
   return (
     <>

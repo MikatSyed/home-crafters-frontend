@@ -31,7 +31,7 @@ const CreateCategoryPage = () => {
       console.log(res);
       setImages([]);
       setImagesPreview([]);
-      toast(res?.message, {
+      toast("Category created successfully", {
         icon: <span style={{ color: "green" }}>✔</span>,
         style: {
           borderRadius: "10px",

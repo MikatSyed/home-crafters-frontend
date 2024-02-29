@@ -8,7 +8,7 @@ type CategoryFieldProps = {
 };
 
 const CategoryField = ({ name, label }: CategoryFieldProps) => {
-  const { data, isLoading } = useCategoriesQuery({
+  const { data, isLoading }:any = useCategoriesQuery({
     limit: 100,
     page: 1,
   });

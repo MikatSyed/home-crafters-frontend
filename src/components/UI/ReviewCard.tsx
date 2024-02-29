@@ -1,71 +1,85 @@
-"use client"
-import React from 'react';
-import Heading from '../Hero/Heading';
-import {BiSolidQuoteAltRight,BiSolidQuoteAltLeft } from 'react-icons/bi'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-
-import Image from 'next/image';
-import { Rate } from 'antd';
-
-const ReviewCard = ({reviews}:any) => {
-  // console.log(reviews);
+"use client";
+import React, { useState } from "react";
+import Heading from "../Hero/Heading";
+import { BiSolidQuoteAltRight, BiSolidQuoteAltLeft } from "react-icons/bi";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
+import { Rate } from "antd";
+import { Navigation, Pagination } from "swiper/modules";
+import { SwiperNavButtons } from "../SwiperNavButton/SwiperNavButton";
+import styles from "../../styles/testtimonial.module.css";
+const ReviewCard = ({ reviews }: any) => {
   return (
     <div>
-     <section className='testimonal padding'>
-        <div className='container'>
-          <Heading subtitle='TESTIMONIAL' title='Our Client Reviews' />
-      <div className='mtop'>
-      <Swiper
-            slidesPerView={1}
-            spaceBetween={10}
-            pagination={{
-              clickable: true,
-            }}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                // spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-              },
-              992: {
-                slidesPerView: 3,
-                spaceBetween: 10,
-              },
-              1024: {
-                slidesPerView: 3, // Show 3 cards in a row for large devices
-                spaceBetween: 10, // Adjust spacing as needed
-              },
-            }}
-            modules={[Pagination]}
-            className="mySwiper"
-          >    
-          <div className='content grid2'>
-            {reviews?.map((val:any) => (
-            <SwiperSlide key={val?.id}>
-              <div className='items shadow'>
-                <div className='box flex'>
-                  <div className='img'>
-                    <Image src={val?.user?.profileImg[0]} alt='' height={100} width={100} style={{borderRadius :'50%'}} />
-                
-                  </div>
-                  <div className='name'>
-                    <h2>{val?.user?.name}</h2>
-                    <Rate disabled allowHalf defaultValue={val?.rating}  />
-                  </div>
-                </div>
-                <p> <span className='icon'> <BiSolidQuoteAltLeft /></span>{val.comment} <span className='icon'> <BiSolidQuoteAltRight /></span></p>
+      <section className={`${styles.testimonal} ${styles.padding}`}>
+        <div className="container">
+          <h1 className={styles.heading}>Our Client Reviews</h1>
+          <div className={styles.mtop}>
+            <Swiper
+              modules={[Navigation]}
+              className="mySwiper"
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 10,
+                },
+                992: {
+                  slidesPerView: 3,
+                  spaceBetween: 10,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 10,
+                },
+              }}
+            >
+              <div className="grid2">
+                {reviews?.map((val: any) => (
+                  <>
+                    <SwiperSlide key={val?.id}>
+                      <div className={`${styles.items} ${styles.shadow}`}>
+                        <div className={styles.flex}>
+                          <div className={styles.img}>
+                            <Image
+                              src={val?.user?.profileImg[0]}
+                              alt=""
+                              height={80}
+                              width={80}
+                              style={{ borderRadius: "50%" }}
+                            />
+                          </div>
+                          <div className={styles.name}>
+                            <h2>{val?.user?.name}</h2>
+                            <Rate
+                              disabled
+                              allowHalf
+                              defaultValue={val?.rating}
+                            />
+                          </div>
+                        </div>
+                        <p>
+                          {" "}
+                          <span className={styles.icon}>
+                            {" "}
+                            <BiSolidQuoteAltLeft />
+                          </span>
+                          {val.comment}{" "}
+                          <span className="icon">
+                            {" "}
+                            <BiSolidQuoteAltRight />
+                          </span>
+                        </p>
+                      </div>
+                    </SwiperSlide>
+                  </>
+                ))}
               </div>
-            </SwiperSlide>
-            ))}
+              <SwiperNavButtons />
+            </Swiper>
           </div>
-          </Swiper>
-      </div>
         </div>
       </section>
     </div>

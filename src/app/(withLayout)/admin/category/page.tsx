@@ -33,8 +33,8 @@ const ManageDepartmentPage = () => {
   // query["searchTerm"] = searchTerm;
 
 
-  const { data, isLoading } = useCategoriesQuery({ ...query });
-  const meta = data?.meta;
+  const { data, isLoading }:any = useCategoriesQuery({ ...query });
+  const meta= data?.meta;
 
   
 

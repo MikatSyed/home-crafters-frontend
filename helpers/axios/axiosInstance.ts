@@ -1,10 +1,11 @@
-import { authKey } from "@/app/constants/storageKey";
+"use client"
+// import { authKey } from "@/app/constants/storageKey";
 import { authOptions } from "@/lib/AuthOptions";
 import { IGenericErrorResponse, ResponseSuccessType } from "@/types";
-import { getFromLocalStorage } from "@/utils/local-storage";
+// import { getFromLocalStorage } from "@/utils/local-storage";
 import axios from "axios";
-import { getServerSession } from "next-auth";
-import { getSession, useSession } from "next-auth/react";
+// import { getServerSession } from "next-auth";
+import { getSession } from "next-auth/react";
 
 
 

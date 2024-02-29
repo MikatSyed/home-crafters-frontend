@@ -8,13 +8,14 @@ import Image from "next/image";
 const AboutCard = () => {
   return (
     <>
-      <section className={styles.aboutHome}> {/* Use the imported styles */}
-            <Heading subtitle='LEARN ANYTHING' title='Benefits About Online Learning Expertise' />
+      <section className={styles.aboutHome}> 
+            <Heading subtitle='Uncover the Advantages of Online Learning in Expertise Enhancement' title='Mastering Home Renovation' />
         <div className={`${styles.container} ${styles.flexSB}`}>
-          <div className={`${styles.left} ${styles.row}`}>
-            <Image src={AboutImage} alt='' layout="responsive" />
-         
-          </div>
+        <div className={`${styles.left} ${styles.row}`}>
+  <Image src={AboutImage} alt='' layout="responsive" />
+  
+</div>
+
           <div className={`${styles.right} ${styles.row}`}>
             <div className={styles.items}>
               {homeAbout.map((val) => {

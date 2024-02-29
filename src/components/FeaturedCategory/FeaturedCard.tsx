@@ -6,7 +6,7 @@ import { Row,Col } from "antd";
 
 
 const FeaturedCard = (data:any) => {
-  console.log(data);
+  
 
   return (
     <>

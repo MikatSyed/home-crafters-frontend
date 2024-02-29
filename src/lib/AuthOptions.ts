@@ -3,6 +3,9 @@ import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { getNewAccessToken } from "../../services/getNewAccessToken";
 
+const apiUrl = process.env.NODE_ENV === 'production' ? 'https://home-crafters-mikatsyed.vercel.app/api/v1/auth/login' : 'http://localhost:6060/api/v1/auth/login';
+
+
 export const authOptions: AuthOptions = {
     // Configure one or more authentication providers
     providers: [
@@ -17,7 +20,7 @@ export const authOptions: AuthOptions = {
             async authorize(credentials, req) {
               
                 try {
-                    const res = await fetch(`https://home-crafters-mikatsyed.vercel.app/api/v1/auth/login`, {
+                    const res = await fetch(apiUrl, {
                         method: "POST",
                         body: JSON.stringify(credentials),
                         headers: { "Content-Type": "application/json" }

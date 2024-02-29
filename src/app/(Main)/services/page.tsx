@@ -47,9 +47,10 @@ const ServicesPage = () => {
   });
 
   let serviceData: any = data?.data;
-  console.log(serviceData);
-  const { data: category } = useCategoriesQuery(undefined);
-  const categoryData: any = data?.data;
+  // console.log(serviceData);
+  const { data: category }:any = useCategoriesQuery(undefined);
+  const categoryData = category?.data;
+
 
   const handleCategoryChange = (e: any) => {
     const categoryValue = e.target.value;
@@ -93,7 +94,7 @@ const ServicesPage = () => {
               Select Categories
             </h2>
             <RadioGroup
-              options={category?.data?.map((cat: any) => ({
+              options={categoryData?.map((cat: any) => ({
                 label: cat.title,
                 value: cat.id,
               }))}

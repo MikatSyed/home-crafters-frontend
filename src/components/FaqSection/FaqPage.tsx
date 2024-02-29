@@ -56,9 +56,7 @@ const FaqPage = async({faqData}:any) => {
             <div className="right-content">
               <Collapse
                 bordered={false}
-                defaultActiveKey={
-                  faqData ? faqData?.map((faq:any) => faq.id.toString()) : []
-                }
+                defaultActiveKey={[]}
                 expandIcon={({ isActive }) => (
                   <CaretRightOutlined rotate={isActive ? 90 : 0} />
                 )}

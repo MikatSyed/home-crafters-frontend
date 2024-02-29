@@ -1,11 +1,15 @@
+"use client"
 import BlogCards from "@/components/Blog/BlogCards";
 import Heading from "@/components/Hero/Heading";
 import { getAllBlog } from "@/lib/fetch";
+import { useBlogsQuery } from "@/redux/api/blogApi";
 
 
-const Blogs = async() => {
-  const blogs = await getAllBlog()
-  const blogData = blogs?.data;
+const Blogs = () => {
+  // const blogs = await getAllBlog()
+  const {data} = useBlogsQuery(undefined)
+  console.log(data);
+  const blogData = data?.data;
   return (
     <>
       <section className='recent padding'>

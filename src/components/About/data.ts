@@ -1,23 +1,24 @@
 export const homeAbout = [
-    {
-      id: 1,
-      cover: "https://img.icons8.com/dotty/80/000000/storytelling.png",
-      title: "Online Courses",
-      desc: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-    },
-    {
-      id: 1,
-      cover: "https://img.icons8.com/ios/80/000000/diploma.png",
-      title: "Earn A Certificates",
-      desc: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-    },
-    {
-      id: 1,
-      cover: "https://img.icons8.com/ios/80/000000/athlete.png",
-      title: "Learn with Expert",
-      desc: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-    },
-  ]
+  {
+    id: 1,
+    cover: "https://img.icons8.com/dotty/80/000000/storytelling.png",
+    title: "Quality Renovation Services",
+    desc: "Transform your home with our expert renovation services. Whether you're looking to remodel your kitchen, renovate your bathroom, or add an extension, we've got you covered.",
+  },
+  {
+    id: 2,
+    cover: "https://img.icons8.com/ios/80/000000/diploma.png",
+    title: "Creative Design Solutions",
+    desc: "Our team of skilled designers will work with you to create personalized design solutions that meet your unique style and requirements. From modern to traditional, we'll bring your vision to life.",
+  },
+  {
+    id: 3,
+    cover: "https://img.icons8.com/ios/80/000000/athlete.png",
+    title: "Professional Construction Work",
+    desc: "Trust our experienced builders and contractors to handle every aspect of your renovation project with precision and care. We'll ensure that your renovation is completed on time and within budget.",
+  },
+];
+
   export const awrapper = [
     {
       cover: "https://img.icons8.com/external-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto/80/ffffff/external-graduation-education-yogi-aprelliyanto-basic-outline-yogi-aprelliyanto.png",
