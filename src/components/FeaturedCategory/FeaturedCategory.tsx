@@ -1,4 +1,3 @@
-"use client"
 import React from "react"
 import FeaturedCard from "./FeaturedCard"
 import Heading from "../Hero/Heading"
@@ -7,10 +6,10 @@ import { getAllCategories } from "@/lib/fetch";
 import { useCategoriesQuery } from "@/redux/api/categoryApi";
 
 const FeaturedCategory = async() => {
-  const {data}:any = useCategoriesQuery(undefined)
+  // const {data}:any = useCategoriesQuery(undefined)
   // console.log({data});
-  // const categories = await getAllCategories()
-  const categoryData = data?.data;
+  const categories = await getAllCategories()
+  const categoryData = categories?.data;
   return (
     <>
      

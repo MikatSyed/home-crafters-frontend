@@ -4,7 +4,7 @@ import FaqPage from './FaqPage';
 
 
 const FaqSection = async() => {
-    const faq = await getAllFaqs()
+    const faq = await getAllFaqs() 
     const faqData = faq?.data;
    
     return (

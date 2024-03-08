@@ -390,13 +390,14 @@ header {
 	background: rgba(255, 255, 255, 0.1);
 	border-radius: 4% 50%;
 	font-size: 32px;
-	color: #ffffff;
+	color: #fff;
   }
   .awards h1 {
 	font-size: 40px;
+  color: #fff;
   }
   .awards p {
-	color: grey;
+	color: #fff;
   }
   
 
