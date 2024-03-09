@@ -1,25 +1,18 @@
-"use client";
-import { Layout } from "antd";
-import Header from "./Header";
+import React from 'react';
+import { Layout } from 'antd';
+import Header from './Header';
 
-const { Content } = Layout;
+const { Content: AntContent } = Layout;
 
-const Contents = ({ children }: { children: React.ReactNode }) => {
-  const base = "admin";
+const ContentPage = ({ collapsed, onToggleSidebar, children }: { collapsed: boolean; onToggleSidebar: () => void; children: React.ReactNode }) => {
   return (
-    <Content
-      style={{
-        minHeight: "100vh"
-      }}
-    >
-      <Header/>
-     <div  style={{
-          padding: "10px",
-        }}>
-      {children}
-     </div>
-    </Content>
+    <Layout>
+      <Header collapsed={collapsed} onToggleSidebar={onToggleSidebar} />
+      <AntContent style={{ margin: '24px 16px', padding: 24, minHeight: 280 }}>
+        {children}
+      </AntContent>
+    </Layout>
   );
 };
 
-export default Contents;
+export default ContentPage;

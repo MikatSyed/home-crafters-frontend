@@ -1,81 +1,50 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import { Layout, Menu } from 'antd';
+// SideBar.tsx
+import React from 'react';
+import { Button, Layout, Menu } from 'antd';
 import { sidebarItems } from '@/app/constants/sidebarItems';
 import Link from 'antd/es/typography/Link';
-import { getSession } from 'next-auth/react';
-
+import { FaHouseChimneyWindow } from 'react-icons/fa6';
+import { CgLogOut } from "react-icons/cg";
 const { Sider } = Layout;
 
-const SideBar = async () => {
-  const [collapsed, setCollapsed] = useState(true);
-  const [isMobile, setIsMobile] = useState(false); // Initialize as false
-
-  useEffect(() => {
-    const handleResize = () => {
-      // Check if window is defined before accessing its properties
-      if (typeof window !== 'undefined') {
-        const screenWidth = window.innerWidth;
-        setIsMobile(screenWidth < 768);
-
-        // If the device width is less than 768 pixels, keep the sidebar collapsed
-        if (screenWidth < 768) {
-          setCollapsed(true);
-        }
-      }
-    };
-
-    // Attach the event listener only on the client side
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleResize);
-    }
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('resize', handleResize);
-      }
-    };
-  }, []);
-
-  const session: any = await getSession();
-  console.log(session,'bbbbbbbbb');
-
-  const handleCollapse = (value: boolean) => {
-    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-      setCollapsed(value);
-    }
-  };
-
+const SideBar = ({ collapsed, onCollapse }: { collapsed: boolean; onCollapse: () => void }) => {
   return (
-    <Sider
-      collapsible={!isMobile}
-      collapsed={collapsed}
-      onCollapse={handleCollapse}
-      breakpoint="lg"
-      collapsedWidth={80}
-      width={280}
-      style={{
-        overflow: 'auto',
-        minHeight: '100vh',
-        position: 'sticky',
-        left: 0,
-        top: 0,
-        bottom: 0,
-        backgroundColor: '#fff',
-      }}
-    >
-      <Link href="/">
-        <div></div>
-      </Link>
-      <Menu
-        theme="light"
-        defaultSelectedKeys={['1']}
-        mode="inline"
-        items={sidebarItems(session?.role)}
-        style={{ fontSize: '1rem', fontWeight: '500' }}
-      />
-    </Sider>
+    <div style={{ backgroundColor: '#27ae60' }}>
+      <Sider
+        // collapsible
+        collapsed={collapsed}
+        onCollapse={onCollapse} // Use onCollapse to toggle the collapsed state
+        breakpoint="lg"
+        collapsedWidth={80}
+        width={280}
+        style={{
+          overflow: 'auto',
+          maxHeight: '100vh',
+          position: 'sticky',
+          left: 0,
+          top: 0,
+          bottom: 0,
+          backgroundColor: '#27ae60'
+        }}
+      >
+        <Link href="/">
+          <div style={{ backgroundColor: '#27ae60', padding: '15px 28px' }}>
+            {collapsed ?  <h3 style={{ color: '#fff' }}><FaHouseChimneyWindow/></h3> :  <h3 style={{ color: '#fff' }}><FaHouseChimneyWindow/> Home Service</h3>}
+           
+          </div>
+        </Link>
+        <Menu
+          defaultSelectedKeys={['1']}
+          mode="inline"
+          items={sidebarItems('admin')}
+          style={{ fontSize: '1rem', fontWeight: '500', color: '#fff', backgroundColor: '#27ae60' }}
+         // Set the theme to dark for the menu
+        />
+      </Sider>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems:'center',position:'fixed',padding:'12rem 6rem'}}>
+         {!collapsed ? <Button type="primary" danger>Logout</Button> : <CgLogOut />} 
+        </div>
+    </div>
   );
 };
 

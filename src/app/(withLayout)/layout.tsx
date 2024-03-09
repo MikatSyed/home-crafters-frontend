@@ -1,18 +1,25 @@
+"use client"
+import React, { useState } from 'react';
+import { Layout } from 'antd';
+import SideBar from '@/components/UI/Sidebar';
+import ContentPage from '@/components/UI/Contents';
+import HeaderPage from '@/components/UI/Header';
 
-import { Layout } from "antd";
-import SideBar from "../../components/UI/Sidebar";
-import Contents from "../../components/UI/Contents";
+const { Header } = Layout;
 
+const LayoutPage = ({ children }: { children: React.ReactNode }) => {
+  const [collapsed, setCollapsed] = useState(true);
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  
+  const toggleSidebar = () => {
+    setCollapsed(!collapsed);
+  };
 
   return (
-    <Layout hasSider>
-      <SideBar />
-      <Contents>{children}</Contents>
+    <Layout style={{ minHeight: '100vh' }}>
+      <SideBar collapsed={collapsed} onCollapse={toggleSidebar} /> {/* Pass collapsed and toggleSidebar */}
+      <ContentPage collapsed={collapsed} onToggleSidebar={toggleSidebar}>{children}</ContentPage>
     </Layout>
   );
 };
 
-export default DashboardLayout;
+export default LayoutPage;
