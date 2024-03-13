@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 import { useState } from 'react';
 import ConfirmationModal, { ConfirmationModalProps } from '@/components/ConfirmationModal/ConfirmationModal';
 import toast, { Toaster } from 'react-hot-toast';
+import { FaPlus } from 'react-icons/fa6';
 const BlogCard = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [id, setId] = useState<string>('');
@@ -54,14 +55,21 @@ const BlogCard = () => {
           },
         ]}
       />
-      <ActionBar title="Blog List"></ActionBar>
-      <Toaster position="top-right" reverseOrder={false} />
-      <ConfirmationModal {...modalProps} />
-      <div style={{ marginBottom: '1rem' }}>
-        <Link href="/admin/blog/create">
-          <Button type="primary">Create</Button>
-        </Link>
-      </div>
+        <div style={{display:'flex', justifyContent:'space-between'}}>
+  
+  <div>
+  <ActionBar title="Service List"/>
+  </div>
+  <div> 
+ <Link href="/admin/blog/create">
+
+ <button className="btn"
+   >
+   <FaPlus/>Add Blog</button>
+ </Link>
+   </div>
+ </div>
+     
 
       {data?.data?.map((blog:any) => (
         <Card key={blog?.id} style={{ marginBottom: '20px' }}>

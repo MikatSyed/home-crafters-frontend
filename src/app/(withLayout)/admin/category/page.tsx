@@ -5,11 +5,12 @@ import { Button, message } from "antd";
 import Link from "next/link";
 import { useState } from "react";
 import dayjs from "dayjs";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, ReloadOutlined } from "@ant-design/icons";
 import ActionBar from "@/components/UI/ActionBar";
 import {RedoOutlined} from "@ant-design/icons"
 import ConfirmationModal, { ConfirmationModalProps } from "@/components/ConfirmationModal/ConfirmationModal";
 import { useCategoriesQuery, useDeleteCategoryMutation } from "@/redux/api/categoryApi";
+import { FaPlus } from "react-icons/fa6";
 
 const ManageDepartmentPage = () => {
   const [page, setPage] = useState<number>(1);
@@ -140,19 +141,33 @@ const ManageDepartmentPage = () => {
       />
         <ConfirmationModal {...modalProps} />
 
-      <ActionBar title="Category List">
+     
 
-        <div>
-          <Link href="/admin/category/create">
-            <Button type="primary">Create</Button>
-          </Link>
+      <div style={{display:'flex', justifyContent:'space-between'}}>
+  
+  <div>
+  <ActionBar title="Category List"/>
+  </div>
+  <div> 
+ <Link href="/admin/category/create">
 
-        {(!!sortBy || !!sortOrder || !!searchTerm) && (
-          <Button type="primary" style={{ margin: "0px 5px" }} onClick={resetFilters}><RedoOutlined/></Button>
-        )}
-
-        </div>
-      </ActionBar>
+ <button className="btn"
+   >
+   <FaPlus/>Add Category</button>
+ </Link>
+   
+ 
+   {(!!sortBy || !!sortOrder ) && (
+     <Button
+       style={{ margin: "0px 5px" }}
+       type="primary"
+       onClick={resetFilters}
+     >
+       <ReloadOutlined />
+     </Button>
+   )}
+   </div>
+ </div>
 
       <UMTable
         dataSource={ data?.data}

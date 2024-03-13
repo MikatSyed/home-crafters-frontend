@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { useDeleteFaqMutation, useFaqsQuery } from '@/redux/api/faqApi';
 import ConfirmationModal, { ConfirmationModalProps } from '@/components/ConfirmationModal/ConfirmationModal';
 import toast, { Toaster } from 'react-hot-toast';
+import { FaPlus } from 'react-icons/fa6';
 
 const { Panel } = Collapse;
 
@@ -59,14 +60,15 @@ const FaqPage = () => {
             <Col>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <Link href={`/admin/faq/edit/${faq.id}`}>
-                  <Button type="primary">
+                  <Button type="primary" onClick={(e) => e.stopPropagation()}>
                     <EditOutlined />
                   </Button>
                 </Link>
                 <Button
                   type="dashed"
                   danger
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     setIsModalVisible(true);
                     setId(faq.id);
                   }}
@@ -95,13 +97,19 @@ const FaqPage = () => {
   return (
     <>
       <BreadCrumb items={[{ label: 'admin', link: '/admin' }]} />
-      <ActionBar title="FAQ List" />
       <Toaster position="top-right" reverseOrder={false} />
-      <ConfirmationModal {...modalProps} />
-      <div style={{ marginBottom: '1rem' }}>
-        <Link href="/admin/faq/create">
-          <Button type="primary">Create</Button>
-        </Link>
+      <ConfirmationModal {...modalProps} />   
+      <div style={{display:'flex', justifyContent:'space-between'}}>
+        <div>
+          <ActionBar title="Service List"/>
+        </div>
+        <div> 
+          <Link href="/admin/faq/create">
+            <button className="btn">
+              <FaPlus/>Add Faq
+            </button>
+          </Link>
+        </div>
       </div>
       <Collapse
         bordered={false}

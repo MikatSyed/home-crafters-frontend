@@ -17,6 +17,7 @@ import UMTable from "@/components/UI/Table";
 import ConfirmationModal, { ConfirmationModalProps } from "@/components/ConfirmationModal/ConfirmationModal";
 import toast, { Toaster } from "react-hot-toast";
 import { useDeleteServiceMutation, useServicesQuery } from "@/redux/api/servicesApi";
+import { FaPlus } from "react-icons/fa6";
 
 
 
@@ -174,32 +175,32 @@ const AdminPage = () => {
       />
         <Toaster  position="top-right"
   reverseOrder={false} />
-      <ActionBar title="Service List">
-      <ConfirmationModal {...modalProps} />
+      
+      <div style={{display:'flex', justifyContent:'space-between'}}>
+  
+       <div>
+       <ActionBar title="Service List"/>
+       </div>
+       <div> 
+      <Link href="/admin/available-service/create">
 
-        {/* <Input
-          size="large"
-          placeholder="Search"
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            width: "20%",
-          }}
-        /> */}
-        <div>
-          <Link href="/admin/available-service/create">
-            <Button type="primary">Create Service</Button>
-          </Link>
-          {(!!sortBy || !!sortOrder ) && (
-            <Button
-              style={{ margin: "0px 5px" }}
-              type="primary"
-              onClick={resetFilters}
-            >
-              <ReloadOutlined />
-            </Button>
-          )}
+      <button className="btn"
+        >
+        <FaPlus/>Add Service</button>
+      </Link>
+        
+      
+        {(!!sortBy || !!sortOrder ) && (
+          <Button
+            style={{ margin: "0px 5px" }}
+            type="primary"
+            onClick={resetFilters}
+          >
+            <ReloadOutlined />
+          </Button>
+        )}
         </div>
-      </ActionBar>
+      </div>
 
       <UMTable
         loading={isLoading}

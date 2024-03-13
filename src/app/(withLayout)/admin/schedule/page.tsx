@@ -12,6 +12,7 @@ import {RedoOutlined} from "@ant-design/icons"
 import { useDebounced } from "@/redux/hook";
 import ConfirmationModal, { ConfirmationModalProps } from "@/components/ConfirmationModal/ConfirmationModal";
 import { useDeleteTimeSlotsMutation, useTimeSlotsQuery } from "@/redux/api/timeSlot";
+import { FaPlus } from "react-icons/fa6";
 
 const ManageSchedulePage = () => {
   const [page, setPage] = useState<number>(1);
@@ -166,7 +167,7 @@ const ManageSchedulePage = () => {
 
         <div>
           <Link href="/admin/schedule/create">
-            <Button type="primary">Create</Button>
+            <button className="btn"><FaPlus/>Add Schedule</button>
           </Link>
 
         {(!!sortBy || !!sortOrder || !!searchTerm) && (

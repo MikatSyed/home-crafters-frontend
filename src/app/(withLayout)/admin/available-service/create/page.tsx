@@ -10,6 +10,7 @@ import { Button, Col, Row, message } from "antd";
 import Image from "next/image";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { FaPlus } from "react-icons/fa6";
 
 interface ServiceImage {
   id: number;
@@ -114,7 +115,7 @@ const CreateServicePage = () => {
         ]}
       />
       <Toaster position="top-right" reverseOrder={false} />
-      <h1>Create Available  Service </h1>
+      <h1>Add Service </h1>
       <div>
         <Form submitHandler={onSubmit} >
           <div
@@ -216,42 +217,71 @@ const CreateServicePage = () => {
                 <FormTextArea name="description" label="Description" rows={4} />
               </Col>
 
-              <Col
-                className="gutter-row"
-                 md={8}
+              <Col   md={9}
                 sm={12}
-                xs={20}
-                style={{
-                  marginBottom: "10px",
-                  margin: "20px",
-                }}
-              >
-                <input
-                  accept="image/*"
-                  multiple
-                  type="file"
-                  name="avatar"
-                  onChange={createServiceImagesChange}
-                />
-              </Col>
-              {imagesPreview.map((image, index) => (
-                <Image
-                  key={index}
-                  src={image}
-                  alt="product Preview"
-                
-                  width={100}
-                  height={100}
-                />
-              ))}
+                xs={20} style={{ margin: "30px 0" }}>
+  <div style={{ display: "flex", flexDirection: "row" }}>
+    <div style={{ position: "relative", width: "100px", height: "100px" }}>
+      <input
+        accept="image/*"
+        multiple
+        type="file"
+        name="avatar"
+        onChange={createServiceImagesChange}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          opacity: 0,
+          cursor: "pointer",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100px",
+          height: "100px",
+          border: "1px dashed #27ae60",
+          borderRadius: "5px",
+          backgroundColor: "#f9f9f9",
+          fontSize: "14px",
+          fontWeight: "bold",
+        }}
+      >
+        <p><FaPlus/></p>
+        <p>Upload</p>
+      </div>
+    </div>
+    <div style={{padding:'0 5px'}}>
+  
+      {imagesPreview.map((image, index) => (
+        <div key={index}>
+          <Image
+            src={image}
+            alt="product Preview"
+            height={100}
+            width={100}
+          />
+        </div>
+      ))}
+   
+    </div>
+  
+  </div>
+</Col>
 
              
             </Row>
           </div>
 
-          <Button htmlType="submit" type="primary">
-            Add Service
-          </Button>
+          <button type="submit" className="btn" >
+            Add 
+          </button>
         </Form>
       </div>
     </>

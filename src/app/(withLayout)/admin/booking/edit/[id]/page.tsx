@@ -109,9 +109,9 @@ const EditPage = ({params}:IDProps) => {
             </Row>
           </div>
 
-          <Button htmlType="submit" type="primary">
-            Edit Booking 
-          </Button>
+          <button type="submit"className="btn">
+            Update 
+          </button>
         </Form>
       </div>
     </>

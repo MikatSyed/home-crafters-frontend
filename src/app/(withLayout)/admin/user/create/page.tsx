@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Image, Row, message } from "antd";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { FaPlus } from "react-icons/fa6";
 
 interface ProductImage {
   id: number;
@@ -98,20 +99,9 @@ const CreateUserPage = () => {
 
   return (
     <>
-      <BreadCrumb
-        items={[
-          {
-            label: "admin",
-            link: "/admin",
-          },
-          {
-            label: "user",
-            link: "/admin/user",
-          },
-        ]}
-      />
+    
       <Toaster position="top-right" reverseOrder={false} />
-      <h1>Create User Page</h1>
+     
       <div>
         <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>
           <div
@@ -194,40 +184,74 @@ const CreateUserPage = () => {
                 />
               </Col>
 
-              <Col
-                className="gutter-row"
-                 md={8}
-                sm={12}
-                xs={20}
-                style={{
-                  marginBottom: "10px",
-                  margin: "20px",
-                }}
-              >
-                <input
-                  accept="image/*"
-                  multiple
-                  type="file"
-                  name="avatar"
-                  onChange={createproductImagesChange}
-                />
-              </Col>
-              {imagesPreview.map((image, index) => (
-                <Image
-                  key={index}
-                  src={image}
-                  alt="product Preview"
-                 
-                  height={100}
-                  width={100}
-                />
-              ))}
+            
 
-              <Col  md={10}
+
+              <Col   md={9}
                 sm={12}
+                xs={20} style={{ margin: "10px 0" }}>
+  <div style={{ display: "flex", flexDirection: "row" }}>
+    <div style={{ position: "relative", width: "100px", height: "100px" }}>
+      <input
+        accept="image/*"
+        multiple
+        type="file"
+        name="avatar"
+        onChange={createproductImagesChange}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          opacity: 0,
+          cursor: "pointer",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100px",
+          height: "100px",
+          border: "1px dashed #27ae60",
+          borderRadius: "5px",
+          backgroundColor: "#f9f9f9",
+          fontSize: "14px",
+          fontWeight: "bold",
+        }}
+      >
+        <p><FaPlus/></p>
+        <p>Upload</p>
+      </div>
+    </div>
+    <div style={{padding:'0 5px'}}>
+  
+      {imagesPreview.map((image, index) => (
+        <div key={index}>
+          <Image
+            src={image}
+            alt="product Preview"
+            height={100}
+            width={100}
+          />
+        </div>
+      ))}
+   
+    </div>
+  
+  </div>
+</Col>
+
+<Col  md={8}
+                sm={20}
                 xs={20} style={{ margin: "10px 0" }}>
                 <FormTextArea name="address" label="Present address" rows={4} />
               </Col>
+
+           
             </Row>
           </div>
 

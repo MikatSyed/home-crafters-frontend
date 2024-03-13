@@ -30,6 +30,7 @@ const FormTextArea = ({
         render={({field}) => (
             <Input.TextArea
             rows={rows}
+            cols={8}
             placeholder={placeholder}
             {...field}
             defaultValue={value}

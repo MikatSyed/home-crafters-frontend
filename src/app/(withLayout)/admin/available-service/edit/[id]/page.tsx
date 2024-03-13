@@ -80,7 +80,7 @@ const EditPage = ({params}:IDProps) => {
       />
        <Toaster  position="top-right"
   reverseOrder={false} />
-      <h1>Edit User </h1>
+      <h1>Update User </h1>
       <div>
       <Form submitHandler={onSubmit} defaultValues={defaultValues} >
           <div
@@ -188,7 +188,7 @@ const EditPage = ({params}:IDProps) => {
           </div>
 
           <Button htmlType="submit" type="primary">
-            Edit Service
+            Update
           </Button>
         </Form>
       </div>

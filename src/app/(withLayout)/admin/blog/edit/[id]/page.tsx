@@ -67,7 +67,7 @@ const EditBlogPage = ({params}:IDProps) => {
       />
        <Toaster  position="top-right"
   reverseOrder={false} />
-      <h1>Create Blog</h1>
+      <h1>Update Blog</h1>
       <div>
         <Form submitHandler={onSubmit} defaultValues={defaultValues}>
         
@@ -84,7 +84,7 @@ const EditBlogPage = ({params}:IDProps) => {
               </Col>
       
           <Button htmlType="submit" type="primary">
-            Edit
+            Update
           </Button>
         </Form>
       </div>
