@@ -8,14 +8,19 @@ import { CgLogOut } from "react-icons/cg";
 import { removeUserInfo } from '../../../services/auth.service';
 import { useRouter } from 'next/navigation';
 import { authKey } from '@/app/constants/storageKey';
+import { signOut } from 'next-auth/react';
+import { useLoggedUserQuery } from '@/redux/api/userApi';
+
 const { Sider } = Layout;
 
 const SideBar = ({ collapsed, onCollapse }: { collapsed: boolean; onCollapse: () => void }) => {
-  console.log(collapsed,'11');
-  const {push} = useRouter();
+  const { data } = useLoggedUserQuery(undefined);
+
+  // Check if user data is available
+  const user = data?.data;
+  let role = user?.role;
   const logout = () => {
-    removeUserInfo(authKey);
-    push("/login")
+    signOut();
 }
   return (
     <div style={{ backgroundColor: '#27ae60' }}>
@@ -45,7 +50,7 @@ const SideBar = ({ collapsed, onCollapse }: { collapsed: boolean; onCollapse: ()
         <Menu
           defaultSelectedKeys={['1']}
           mode="inline"
-          items={sidebarItems('admin')}
+          items={sidebarItems(role)}
           style={{ fontSize: '1rem', fontWeight: '500', color: '#fff', backgroundColor: '#27ae60' }}
          // Set the theme to dark for the menu
         />

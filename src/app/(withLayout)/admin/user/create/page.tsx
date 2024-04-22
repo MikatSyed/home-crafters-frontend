@@ -41,7 +41,7 @@ const CreateUserPage = () => {
         icon: <span style={{ color: "green" }}>✔</span>,
         style: {
           borderRadius: "10px",
-          background: "#FFBF00",
+          background: "#27ae60",
           color: "#fff",
         },
       });
@@ -100,7 +100,7 @@ const CreateUserPage = () => {
   return (
     <>
     
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="bottom-right" reverseOrder={false} />
      
       <div>
         <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>

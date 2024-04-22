@@ -7,7 +7,7 @@ import { useAddCategoryMutation } from "@/redux/api/categoryApi";
 import { Button, Col, Row, message } from "antd";
 import Image from "next/image";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 interface CategoryImage {
   id: number;
@@ -35,7 +35,7 @@ const CreateCategoryPage = () => {
         icon: <span style={{ color: "green" }}>✔</span>,
         style: {
           borderRadius: "10px",
-          background: "#FFBF00",
+          background: "#27ae60",
           color: "#fff",
         },
       });
@@ -101,6 +101,8 @@ const CreateCategoryPage = () => {
           { label: "category", link: `/${base}/category` },
         ]}
       />
+         <Toaster  position="bottom-right"
+  reverseOrder={false} />
       <h1>Create Category</h1>
       <Form submitHandler={onSubmit}>
       

@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input } from "antd";
+import { Button, Input, Select } from "antd";
 import Link from "next/link";
 import {
   DeleteOutlined,
@@ -16,12 +16,13 @@ import ActionBar from "@/components/UI/ActionBar";
 import UMTable from "@/components/UI/Table";
 import ConfirmationModal, { ConfirmationModalProps } from "@/components/ConfirmationModal/ConfirmationModal";
 import toast, { Toaster } from "react-hot-toast";
-import { useDeleteServiceMutation, useServicesQuery } from "@/redux/api/servicesApi";
+import { useDeleteServiceMutation, useServicesQuery, useUpdateServiceMutation } from "@/redux/api/servicesApi";
 import { FaPlus } from "react-icons/fa6";
 
 
 
-const AdminPage = () => {
+const UpcomingServicePage = () => {
+  const { Option } = Select;
   const query: Record<string, any> = {};
 
   const [page, setPage] = useState<number>(1);
@@ -30,6 +31,8 @@ const AdminPage = () => {
   const [sortOrder, setSortOrder] = useState<string>("");
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [id,setId] = useState<string>("");
+  console.log(id);
+  const [status,setStatus] = useState<string>("")
   
 
   query["limit"] = size;
@@ -47,6 +50,7 @@ const AdminPage = () => {
   const res = services?.filter((data:any)=> data.availbility === "upcoming" )
   console.log(res);
   const meta = data?.meta;
+  const [updateService] = useUpdateServiceMutation();
 
 
   const handleOk = async () => {
@@ -64,11 +68,38 @@ const AdminPage = () => {
     })
   };
 
+
   const handleCancel = () => {
     setIsModalVisible(false);
   };
 
-
+  
+  const handleStatusChange = async (id: string) => {
+    try {
+      // Update only the availability field
+      await updateService({ id, body: { availbility: 'available' } }).unwrap();
+  
+      // Show success toast
+      toast("Service updated successfully from Upcoming to Available", {
+        icon: <span style={{ color: "green" }}>✔</span>,
+        style: {
+          borderRadius: '10px',
+          background: '#FFBF00',
+          color: '#fff',
+        }
+      });
+    } catch (error) {
+      // Show error toast if update fails
+      toast("Failed to update service", {
+        icon: <span style={{ color: "red" }}>✖</span>,
+        style: {
+          borderRadius: '10px',
+          background: '#FFBF00',
+          color: '#fff',
+        }
+      });
+    }
+  };
   const columns = [
   
     {
@@ -100,16 +131,27 @@ const AdminPage = () => {
       sorter: true,
     },
     {
+      title: "Status",
+      dataIndex: "id",
+      render: function (data: any) {
+        return (
+          <>        
+             <Select value="Upcoming" style={{ width: 120 }}   onChange={()=>handleStatusChange(data)}>
+
+      <Option value="available">Available</Option>
+      {/* Add more options if needed */}
+             </Select>   
+          </>
+        );
+      },
+    },
+    {
       title: "Action",
       dataIndex: "id",
       render: function (data: any) {
         return (
           <>
-            {/* <Link href={`/super_admin/admin/details/${data.id}`}>
-              <Button onClick={() => console.log(data)} type="primary">
-                <EyeOutlined />
-              </Button>
-            </Link> */}
+       
             <Link href={`/admin/upcoming-service/edit/${data}`}>
               <Button 
                 style={{
@@ -162,19 +204,21 @@ const AdminPage = () => {
     visible: isModalVisible
   };
 
+
   return (
-    <div>
+    <>
+
+    <ConfirmationModal {...modalProps} />
       <BreadCrumb
         items={[
           {
-            label: "Admin",
-            link: "/admin",
+            label: "Upcoming Service",
+            link: "/admin/upcoming-service",
           },
          
         ]}
       />
-        <Toaster  position="top-right"
-  reverseOrder={false} />
+        
       <div style={{display:'flex', justifyContent:'space-between'}}>
   
   <div>
@@ -213,8 +257,8 @@ const AdminPage = () => {
         showPagination={true}
         scroll={true}
       />
-    </div>
+    </>
   );
 };
 
-export default AdminPage;
+export default UpcomingServicePage;

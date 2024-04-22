@@ -4,13 +4,14 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import BreadCrumb from "@/components/UI/BreadCrumb";
-import { useRegistrationMutation } from "@/redux/api/authApi";
+import { useCreateMutation } from "@/redux/api/userApi";
 import { adminSchema } from "@/schemas/admin";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
 import Image from "next/image";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { FaPlus } from "react-icons/fa6";
 
 interface ProductImage {
   id: number;
@@ -20,7 +21,7 @@ const CreateAdminPage = () => {
   const [images, setImages] = useState<ProductImage[]>([]);
 
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
-  const [registration] = useRegistrationMutation();
+  const [create] = useCreateMutation();
 
   const onSubmit = async (values: any) => {
     const obj = { ...values };
@@ -31,7 +32,7 @@ const CreateAdminPage = () => {
     message.loading("Creating..");
 
     try {
-      const res = await registration(obj).unwrap();
+      const res = await create(obj).unwrap();
       setImages([]);
       setImagesPreview([]);
       toast(res?.message, {
@@ -60,7 +61,7 @@ const CreateAdminPage = () => {
     return counter;
   };
   //@ts-ignore
-  const createproductImagesChange = (
+  const createServiceImagesChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     let files: File[] = Array.from(e.target.files || []);
@@ -100,15 +101,15 @@ const CreateAdminPage = () => {
         items={[
           {
             label: "super_admin",
-            link: "/super_admin",
-          },
-          {
-            label: "admin",
             link: "/super_admin/admin",
           },
+          // {
+          //   label: "admin",
+          //   link: "/super_admin/admin",
+          // },
         ]}
       />
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="bottom-right" reverseOrder={false} />
       <h1>Create Admin Page</h1>
       <div>
         <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>
@@ -192,37 +193,70 @@ const CreateAdminPage = () => {
                 />
               </Col>
 
-              <Col
-                className="gutter-row"
-                md={8}
-                sm={12}
-                xs={20}
-                style={{
-                  marginBottom: "10px",
-                  marginTop: "20px",
-                }}
-              >
-                <input
-                  accept="image/*"
-                  multiple
-                  type="file"
-                  name="avatar"
-                  onChange={createproductImagesChange}
-                />
-              </Col>
-              {imagesPreview.map((image, index) => (
-                <Image
-                  key={index}
-                  src={image}
-                  alt="product Preview"   
-                  width={100}
-                  height={100}
-                />
-              ))}
+          
 
               <Col md={10} sm={12} xs={20} style={{ margin: "10px 0" }}>
                 <FormTextArea name="address" label="Present address" rows={4} />
               </Col>
+
+              <Col   md={8}
+                sm={12}
+                xs={20} >
+  <div style={{ display: "flex", flexDirection: "row" }}>
+    <div style={{ position: "relative", width: "100px", height: "100px" }}>
+      <input
+        accept="image/*"
+        multiple
+        type="file"
+        name="avatar"
+        onChange={createServiceImagesChange}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          opacity: 0,
+          cursor: "pointer",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100px",
+          height: "100px",
+          border: "1px dashed #27ae60",
+          borderRadius: "5px",
+          backgroundColor: "#f9f9f9",
+          fontSize: "14px",
+          fontWeight: "bold",
+        }}
+      >
+        <p><FaPlus/></p>
+        <p>Upload</p>
+      </div>
+    </div>
+    <div style={{padding:'0 5px'}}>
+  
+      {imagesPreview.map((image, index) => (
+        <div key={index}>
+          <Image
+            src={image}
+            alt="product Preview"
+            height={100}
+            width={100}
+          />
+        </div>
+      ))}
+   
+    </div>
+  
+  </div>
+</Col>
+             
             </Row>
           </div>
 

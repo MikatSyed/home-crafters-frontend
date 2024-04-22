@@ -37,7 +37,7 @@ const CreateUserPage = () => {
           icon:  <span style={{color:"green"}}>✔</span>,
           style: {
             borderRadius: '10px',
-            background: '#FFBF00',
+            background: '#27ae60',
             color: '#fff',
           }
         })
@@ -111,7 +111,7 @@ const CreateUserPage = () => {
           },
         ]}
       />
-       <Toaster  position="top-right"
+       <Toaster  position="bottom-right"
   reverseOrder={false} />
       <div >
       <h1>Add Blog</h1>

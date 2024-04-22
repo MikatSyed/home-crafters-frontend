@@ -2,12 +2,33 @@
 
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
+import { useChangePasswordMutation } from "@/redux/api/authApi";
+import { useLoggedUserQuery } from "@/redux/api/userApi";
 import { Button } from "antd";
+import toast, { Toaster } from "react-hot-toast";
 
-const ResetPassPage = () => {
-  const onSubmit = async (data: any) => {
+const ChangePassPage = () => {
+  const [changePassword] = useChangePasswordMutation()
+  const { data } = useLoggedUserQuery(undefined);
+
+
+  // Check if user data is available
+  const user = data?.data;
+  const id = user?.id;
+  
+  const onSubmit = async (values: any) => {
+    console.log(values);
     try {
-      console.log(data);
+    const res = await changePassword({id,body:values}).unwrap();
+    toast(res?.message, {
+      icon: <span style={{ color: "green" }}>✔</span>,
+      style: {
+        borderRadius: "10px",
+        background: "#FFBF00",
+        color: "#fff",
+      },
+    });
+    console.log(res);
     } catch (error) {
       console.error(error);
     }
@@ -17,6 +38,7 @@ const ResetPassPage = () => {
     <div
       style={{ margin: "100px 0", display: "flex", justifyContent: "center" }}
     >
+       <Toaster position="bottom-right" reverseOrder={false} />
       <Form submitHandler={onSubmit}>
         <h3 style={{ marginBottom: "10px" }}>Reset Password</h3>
         <div style={{ margin: "5px 0" }}>
@@ -33,4 +55,4 @@ const ResetPassPage = () => {
   );
 };
 
-export default ResetPassPage;
+export default ChangePassPage;

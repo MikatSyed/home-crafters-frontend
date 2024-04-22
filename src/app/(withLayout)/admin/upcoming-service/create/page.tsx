@@ -42,7 +42,7 @@ const CreateServicePage = () => {
         icon: <span style={{ color: "green" }}>✔</span>,
         style: {
           borderRadius: "10px",
-          background: "#FFBF00",
+          background: "#27ae60",
           color: "#fff",
         },
       });
@@ -112,7 +112,7 @@ const CreateServicePage = () => {
           },
         ]}
       />
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="bottom-right" reverseOrder={false} />
       <h1>Create Upcoming  Service </h1>
       <div>
         <Form submitHandler={onSubmit} >

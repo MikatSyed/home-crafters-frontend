@@ -5,6 +5,7 @@ import ActionBar from "@/components/UI/ActionBar";
 import BreadCrumb from "@/components/UI/BreadCrumb";
 import { useCategoryQuery, useUpdateCategoryMutation } from "@/redux/api/categoryApi";
 import { Button, Col, Row, message } from "antd";
+import toast, { Toaster } from "react-hot-toast";
 
 type IDProps = {
     params: any;
@@ -24,7 +25,14 @@ const EditPage = ({params}:IDProps) => {
         message.loading("Updating.....");
         try {
         await updateCategory({id,body:values});
-        message.success("Category updated successfully");
+        toast("Category Updated successfully", {
+          icon: <span style={{ color: "green" }}>✔</span>,
+          style: {
+            borderRadius: "10px",
+            background: "#27ae60",
+            color: "#fff",
+          },
+        });
         }catch (err: any) {
            
             message.error(err.message);
@@ -49,6 +57,9 @@ const EditPage = ({params}:IDProps) => {
           },
         ]}
       />
+
+    <Toaster  position="bottom-right"
+  reverseOrder={false} />
 
       <ActionBar title="Edit Category"> </ActionBar>
       <Form submitHandler={onSubmit} defaultValues={defaultValues}>

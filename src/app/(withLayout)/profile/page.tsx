@@ -12,30 +12,40 @@ import { adminUpdateSchema } from '@/schemas/admin';
 import dayjs from "dayjs";
 import Image from 'next/image';
 import { FaCalendarAlt } from 'react-icons/fa';
-
+import { useState } from 'react';
+import { FaCamera, FaPlus } from 'react-icons/fa6';
+import Camera from "../../../assets/photo.png"
 const { Meta } = Card;
-
+interface ProductImage {
+  id: number;
+  url: string;
+}
 const ProfilePage = () => {
   const { data } = useLoggedUserQuery(undefined);
   const [updateUser] = useUpdateUserMutation();
-
+  const [images, setImages] = useState<ProductImage[]>([]);
+  const [imagesPreview, setImagesPreview] = useState<string[]>([]);
+  const [updatedImage, setUpdatedImage] = useState('');
   // Check if user data is available
   const user = data?.data;
   const id = user?.id;
-  console.log(id);
   const profileImg = user?.profileImg;
   const lastProfileImg = profileImg && profileImg.length > 0 ? profileImg[profileImg.length - 1] : null;
 
 
   const onSubmit = async (values: any) => {
     const obj = {...values}
-    obj.role = "user"
+    
+    images.forEach((image) => {
+      obj.profileImg = image?.url;
+    });
    
    message.loading("Creating..")
+
    
     try {
-      console.log(values);
-     const res =  await updateUser({id,body:values}).unwrap()
+      console.log(obj);
+     const res =  await updateUser({id,body:obj}).unwrap()
      
       toast(res?.message,
         {
@@ -69,7 +79,51 @@ const ProfilePage = () => {
     contactNo: user?.contactNo || "",
     address: user?.address || "",
 }
-  
+
+let counter = 0;
+
+const uniqueId = (): number => {
+  counter += 1;
+  return counter;
+};
+//@ts-ignore
+const createproductImagesChange = (
+  e: React.ChangeEvent<HTMLInputElement>
+) => {
+  let files: File[] = Array.from(e.target.files || []);
+
+  // Assuming images and imagesPreview are properly typed arrays
+  setImages((oldImages: ProductImage[]) => []);
+  setImagesPreview((oldImages: string[]) => []);
+
+  files.forEach((file: File) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImagesPreview((oldImages: string[]) => [
+          ...oldImages,
+          reader.result as string,
+        ]);
+        // Assuming you have a valid way to create a ProductImage from the reader result
+        const newProductImage: ProductImage = {
+          id: uniqueId(), // replace with a function to generate unique IDs
+          url: reader.result as string,
+        };
+        setImages((oldImages: ProductImage[]) => [
+          ...oldImages,
+          newProductImage,
+        ]);
+        setUpdatedImage(reader.result as string);
+      }
+    };
+
+    reader.readAsDataURL(file);
+  });
+};
+
+
+
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
@@ -80,7 +134,44 @@ const ProfilePage = () => {
                 <Card className="card-container">
                 {user && (
                   <div className="user-info">
-                    <Image  alt="profile" height={130} width={130} src={lastProfileImg} />
+      <div style={{ position: "relative", width: "130px", height: "130px" }}>
+     
+  <div
+    style={{
+      width: "130px",
+      height: "130px",
+      backgroundImage: `url(${updatedImage || lastProfileImg})`, // Set the background image
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      borderRadius:'50%'
+    }}
+  ></div>
+  {/* Input file */}
+  <input
+    accept="image/*"
+    multiple
+    type="file"
+    name="avatar"
+    onChange={createproductImagesChange}
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      opacity: 0,
+      cursor: "pointer",
+    }}
+  />
+  <div
+       style={{marginTop:'-7rem',marginLeft:'6rem'}}
+      >
+      
+      <Image src={Camera} alt="camera" height={30} width={30}/>
+       
+      </div>
+</div>
+
                     <h2>{user.name}</h2>
                   
                     <p>{user.role}</p>
@@ -90,7 +181,7 @@ const ProfilePage = () => {
                 )}
               </Card>
                 <Card className="card-container">
-                 <button>Change Password</button>
+                <Link href="/profile/change-password"> <button>Change Password</button></Link>
               </Card>
               
           </Col>

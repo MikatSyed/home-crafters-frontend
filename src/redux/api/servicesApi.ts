@@ -7,6 +7,15 @@ const  CATEGORY = "/categories"
 export const servicesApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
 
+    overview: build.query({
+        query: (arg) => ({
+          url : `${URL}/overview`,
+          method: "GET" ,
+          params: arg
+        }),
+        
+        providesTags:[tagTypes.services]
+      }),
     services: build.query({
         query: (arg) => ({
           url : `${URL}`,
@@ -67,4 +76,4 @@ export const servicesApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddServiceMutation,useServicesQuery,useServiceQuery,useUpdateServiceMutation,useDeleteServiceMutation,useCategoriesQuery } = servicesApi;
+export const { useAddServiceMutation,useServicesQuery,useOverviewQuery,useServiceQuery,useUpdateServiceMutation,useDeleteServiceMutation,useCategoriesQuery } = servicesApi;
