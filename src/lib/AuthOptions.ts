@@ -3,7 +3,7 @@ import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { getNewAccessToken } from "../../services/getNewAccessToken";
 
-const apiUrl = process.env.NODE_ENV === 'production' ? 'https://home-crafters-mikatsyed.vercel.app/api/v1/auth/login' : 'http://localhost:6060/api/v1/auth/login';
+const apiUrl = process.env.NODE_ENV === 'production' ? 'https://home-crafters-mikatsyed.vercel.app/api/v1/auth/login' : 'http://localhost:6068/api/v1/auth/login';
 
 
 export const authOptions: AuthOptions = {

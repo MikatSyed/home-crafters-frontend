@@ -1,0 +1,164 @@
+
+
+.about {
+	background-image: url("../assets/miles-burke-idhx-MOCDSk-unsplash.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 50vh;
+	width: 100%;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+
+  }
+
+  .about .container {
+   padding-top: 5%;
+   display: flex;
+   flex-direction: column; /* Align items in a column */
+   justify-content: center; /* Center vertically */
+   align-items: center; 
+}
+
+.start{
+	padding-top: 10px;
+}
+  .about h1 {
+	color: #fff;
+	font-size: 40px;
+  }
+  .about p {
+	color: #fff;
+    font-size: 20px;
+    padding: 10px;
+
+  }
+
+
+
+  .main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2rem;
+    
+}
+
+
+.main h2{
+    font-size: 25px;
+}
+.main p{
+    font-size: 18px;
+    margin: 10px 0px;
+    text-align: justify;
+}
+
+
+
+.img {
+    border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+  
+  @media (max-width: 768px) {
+    .main {
+      /* display: flex; */
+      flex-direction: column;
+      justify-content: center; /* Change to column for small devices */
+      align-items: center; /* Center horizontally */
+      /* margin-top: 2rem; */
+      padding: 5rem;
+  }
+    .about-container {
+      flex-direction: column;
+    }
+  
+    .about-content,
+    .about-image {
+      max-width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .main {
+     
+      flex-direction: column;
+      justify-content: center; /* Change to column for small devices */
+      align-items: center; /* Center horizontally */
+      padding: 5rem;
+     
+  }
+	.about h1 {
+		
+		font-size: 40px;
+	  }
+  }
+  
+  /* Small devices (phones, 0px to 767px) */
+  @media screen and (max-width: 767px) {
+	
+	.about h1 {
+		
+		font-size: 30px;
+	  }
+  }
+
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center vertically */
+    padding: 5rem;
+}
+
+.right {
+    padding: 10px;
+}
+
+.right h2 {
+    font-size: 30px;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+.formGroup input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+/* 
+textarea {
+    resize: none;
+} */
+
+.submitButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.submitButton:hover {
+    background-color: #45a049;
+}
+
+.img {
+    border-radius: 20px;
+}

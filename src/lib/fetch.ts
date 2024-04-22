@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 let BASE_URL:string
 if (process.env.NODE_ENV === 'development') {
     // Development environment
-    BASE_URL = 'http://localhost:6060/api/v1'; // Replace with your localhost URL
+    BASE_URL = 'http://localhost:6068/api/v1'; // Replace with your localhost URL
   } else {
     // Production environment
     BASE_URL = 'https://home-crafters-mikatsyed.vercel.app/api/v1';

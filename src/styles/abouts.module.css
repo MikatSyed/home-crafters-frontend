@@ -1,0 +1,101 @@
+
+
+.about {
+	background-image: url("../assets/outsite-co-R-LK3sqLiBw-unsplash.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 50vh;
+	width: 100%;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+
+  }
+
+  .about .container {
+   padding-top: 5%;
+   display: flex;
+   flex-direction: column; /* Align items in a column */
+   justify-content: center; /* Center vertically */
+   align-items: center; 
+}
+
+.start{
+	padding-top: 10px;
+}
+  .about h1 {
+	color: #fff;
+	font-size: 50px;
+  }
+  .about p {
+	color: #fff;
+    font-size: 20px;
+    padding: 10px;
+
+  }
+
+
+
+  .main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center vertically */
+    margin-top: 2rem;
+    padding: 5rem;
+}
+
+.left {
+    padding-right: 30px; /* Adjust padding as needed */
+}
+.left h2{
+    font-size: 30px;
+}
+.left p{
+    font-size: 20px;
+    margin: 10px 0px;
+    text-align: justify;
+}
+
+.right {
+    padding: 10px;
+}
+
+.img {
+    border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+  
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+    }
+  
+    .about-content,
+    .about-image {
+      max-width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+	.about .container {
+	  padding-top: 8%;
+	}
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+	
+	.about h1 {
+		
+		font-size: 40px;
+	  }
+  }
+  
+  /* Small devices (phones, 0px to 767px) */
+  @media screen and (max-width: 767px) {
+	
+	.about h1 {
+		
+		font-size: 30px;
+	  }
+  }

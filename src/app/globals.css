@@ -284,9 +284,7 @@ header a {
   transition: 0.5s;
   font-weight: 500;
 }
-header a:hover {
-  color: #27ae60;
-}
+
 /* header span {
 	width: auto;
 	padding: 0px 6px;
@@ -448,7 +446,7 @@ header .toggle {
 }
 
 .footerContact {
-  background-color: #27ae60;
+  background-color: #53a375;
   padding: 40px 0;
   color: #fff;
   border-radius: 5%;
@@ -727,13 +725,6 @@ li {
   }
 }
 
-/* .ant-layout .ant-layout-sider-trigger{
-  background-color: # ;
-} */
-
-/* .ant-menu-submenu-selected {
-  background-color: transparent !important;
-} */
 .ant-menu-submenu-selected {
   background-color: transparent !important;
 }
@@ -762,6 +753,7 @@ li {
   color: white !important;
 }
 
+
 .card-container {
   width: 100%;
   display: flex;
@@ -775,6 +767,9 @@ li {
   align-items: center;
   margin-top: 20px; /* Adjust margin as needed */
 }
+.profileImg {
+  border-radius: 50%;
+}
 
 .user-info h2 {
   margin-top: 10px; /* Adjust margin as needed */
@@ -784,3 +779,4 @@ li {
   margin-top: 10px; /* Adjust margin as needed */
   color: gray;
 }
+
